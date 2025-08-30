@@ -5,6 +5,7 @@ class AppColors {
   static Color shimmerHighLightColor = Colors.grey.shade400;
 
   static const Color primaryColor = Color(0xffFFCC91);
+  static const Color primaryDarkColor = Color(0xffd29965);
   static const Color primaryLightColor = Color(0xffffdeb6);
   static Color snackBarBackgroundColor = Color(0xff80f8bf);
   static Color snackBarBorderColor = Color(0xff1CBA6F);

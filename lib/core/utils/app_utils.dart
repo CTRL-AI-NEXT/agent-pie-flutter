@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_app_version_checker/flutter_app_version_checker.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 // import 'package:mobile_device_identifier/mobile_device_identifier.dart';
@@ -397,26 +396,6 @@ class AppUtils {
     }
   }
 
-  // static Future<void> getCurrentLocation() async {
-  //   if (await AppUtils.haveLocationPermission()) {
-  //     EasyLoading.show();
-  //     /*final position =*/
-  //     await Geolocator.getCurrentPosition(
-  //       locationSettings: LocationSettings(
-  //         accuracy: LocationAccuracy.high,
-  //         // distanceFilter: 10,
-  //       ),
-  //     );
-  //
-  //     // double latitude = position.latitude;
-  //     // double longitude = position.longitude;
-  //
-  //     EasyLoading.dismiss();
-  //     // AppUtils.showSnackBar(
-  //     //     message: "Latitude: $latitude, Longitude: $longitude",
-  //     //     isSuccess: true);
-  //   }
-  // }
 
   static RegExp amountRegExp = RegExp(r'([.]*0)(?!.*\d)');
 
@@ -704,6 +683,8 @@ class AppUtils {
   static String getInitials(String name) => name.isNotEmpty
       ? name.trim().split(' ').map((l) => l[0]).take(2).join().toUpperCase()
       : '';
+
+
 
 
 }

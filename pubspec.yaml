@@ -15,7 +15,7 @@ dependencies:
 
   # Utils
   device_info_plus: ^10.1.2
-  intl: ^0.19.0
+  intl: ^0.18.0
   flutter_screenutil: ^5.8.4
   flutter_easyloading: ^3.0.5
   logger: ^2.0.1
@@ -61,25 +61,11 @@ dependencies:
 
   # Additional UI Elements (Toast, Popup, Addition Display)
   fluttertoast: ^8.2.12
-  date_field: ^6.0.0
-  #  custom_pop_up_menu: ^1.2.4
-  #  flutter_reaction_button: ^3.0.0+2
-  #  emoji_picker_flutter: ^2.2.0
-
-
-  # Location
-  geolocator: ^13.0.2
+  date_field: 6.0.3+1
 
   # Other UI Elements
-  #  azlistview: ^2.0.0
   flutter_animate: ^4.2.0+1
   timeago: ^3.6.0
-  #  video_thumbnail: ^0.5.3
-
-  # Amplify AWS
-  #  amplify_flutter: ^2.5.0
-  #  amplify_auth_cognito: ^2.5.0
-  #  amplify_storage_s3: ^2.5.0
   chewie: ^1.7.4
   cropperx: ^1.1.1
   package_info_plus: ^8.1.1
@@ -93,9 +79,6 @@ dependencies:
   # flutter_app_version_checker: any
 
   #  flutter_launcher_icons: ^0.13.1
-  #  flutter_native_splash: ^2.3.7
-  #  share_plus: ^10.0.0
-  # pin_input_text_field: ^4.5.2
 
   visibility_detector: ^0.4.0+2
 

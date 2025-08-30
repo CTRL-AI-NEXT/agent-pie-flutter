@@ -1,5 +1,7 @@
 import 'package:agent_pie/core/basic_features.dart';
 import 'package:agent_pie/core/utils/shimmer_screen.dart';
+import 'package:agent_pie/core/widgets/custom_appbar.dart';
+import 'package:agent_pie/core/widgets/custom_bottom_sheet.dart';
 import 'package:agent_pie/core/widgets/custom_image.dart';
 import 'package:agent_pie/core/widgets/text_field/text_field/search_bar_text_field.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/chats/widgets/chat_bubble.dart';
@@ -14,72 +16,93 @@ class ChatsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppString.chats.tr,
-          style: fontStyleSemiBold17,
+    return GetBuilder<ChatsController>(
+      init: ChatsController(),
+      builder: (controller) => Scaffold(
+        appBar: defaultAppbar(
+          context: context,
+          onPressed: () {
+            CustomBottomSheet.instance.modalBottomSheet(
+              context: context,
+              child: Obx(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.sopTitles.length,
+                  itemBuilder: (context, index) {
+                    final sopTitle = controller.sopTitles[index];
+                    return CheckboxListTile(
+                      title: Text(sopTitle),
+                      value: controller.selectedSopTitle.value == sopTitle,
+                      onChanged: (value) {
+                        if (value == true) {
+                          controller.selectedSopTitle.value = sopTitle;
+                          Navigator.pop(context);
+                        }
+                      },
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+          selectedSopTitle: controller.selectedSopTitle,
         ),
-        titleSpacing: 0,
-        leading: IconButton(
-          iconSize: Dimensions.w28,
-          icon: CustomSvgAssetImage(
-            image: AppImages.icBackArrowNav,
-            width: Dimensions.w28,
-            height: Dimensions.h28,
-            color: Theme.of(context).colorScheme.textColor,
-          ),
-          onPressed: () => Get.back(),
-        ),
-      ),
-      body: GetBuilder<ChatsController>(
-        init: ChatsController(),
-        autoRemove: false,
-        builder: (controller) => SizedBox(
-          height: Get.height - kBottomNavigationBarHeight - kToolbarHeight,
-          child: Column(
+        resizeToAvoidBottomInset: true,
+        body: Obx(
+          () => Column(
             children: [
-              false
-                  ?
-                  // Full Screen Loading
-                  const Expanded(child: ShimmerChattingScreen())
-                  : controller.messageList.isNotEmpty
-                      ?
-                      // Chatting
-                      Expanded(
-                          child: ListView.builder(
-                            itemCount: controller.messageList.length + 1,
-                            controller: controller.scrollController,
-                            reverse: true,
-                            padding: EdgeInsets.only(
-                                bottom: Dimensions.h10,
-                                left: Dimensions.w5,
-                                right: Dimensions.w5),
-                            itemBuilder: (context, index) {
-                              if (index == controller.messageList.length) {
-                                return controller.isPaginating.value
-                                    ? const CupertinoActivityIndicator()
-                                    : const SizedBox();
-                              }
+              Expanded(
+                child: controller.messageList.isNotEmpty
+                    ?
+                    // Chatting
+                    ListView.builder(
+                        itemCount: controller.messageList.length + 1,
+                        controller: controller.scrollController,
+                        reverse: true,
+                        padding: EdgeInsets.only(
+                          bottom: Dimensions.h10,
+                          left: Dimensions.w5,
+                          right: Dimensions.w5,
+                        ),
+                        itemBuilder: (context, index) {
+                          if (index == controller.messageList.length) {
+                            return controller.isPaginating.value
+                                ? const CupertinoActivityIndicator()
+                                : const SizedBox();
+                          }
 
-                              return ChatBubble(
-                                chatItem: controller.messageList[index],
-                              );
-                            },
-                          ),
-                        )
-                      :
-                      // Empty Chat
-                      const ChatEmptyView(),
+                          // Determine the date of the next (older) chat item
+                          final previousMessageDate =
+                              (index + 1 < controller.messageList.length)
+                                  ? controller.messageList[index + 1].createdAt
+                                  : null;
+
+                          return ChatQueryAndResponseTile(
+                            chatItem: controller.messageList[index],
+                            previousMessageDate: previousMessageDate,
+                          );
+                        },
+                      )
+                    :
+                    // Empty Chat or Loading View
+                    // Note: The loading state should be handled here to prevent the list from building when empty.
+                    controller.isLoading.value
+                        ? const ShimmerChattingScreen()
+                        : const ChatEmptyView(),
+              ),
 
               // Send Message Bar
               Obx(
                 () => Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: Dimensions.w20).copyWith(
-                    bottom: MediaQuery.viewInsetsOf(context).bottom + Dimensions.h110,
+                  padding: EdgeInsets.only(
+                    left: Dimensions.w20,
+                    right: Dimensions.w20,
+                    bottom: controller.isKeyboardVisible.value
+                        ? MediaQuery.of(context).viewInsets.bottom +
+                            Dimensions.h10
+                        : Dimensions.h100,
                   ),
-                  child: SearchBarTextBoxField(
+                  child: SendMessageTextField(
                     height: Dimensions.h38,
                     minLines: 1,
                     maxLines: 3,
@@ -89,24 +112,27 @@ class ChatsTab extends StatelessWidget {
                     topLeftRadius: Dimensions.r15,
                     topRightRadius: Dimensions.r15,
                     bottomLeftRadius: Dimensions.r15,
+                    focusNode: controller.focusNode,
                     bottomRightRadius: Dimensions.r15,
                     onChanged: (value) =>
                         controller.showSendIcon.value = value.isNotEmpty,
                     afterClearButton: () {},
                     prefixIcon: const SizedBox(),
-                    hintText: AppString.enterYourQuestionHere.tr,
+                    hintText: AppString.askMeAnything.tr,
                     hintTextColor: Theme.of(context).colorScheme.hintTextColor,
-                    onFieldSubmit: (_) => controller.onJustSearchButton(),
+                    onFieldSubmit: (_) => controller.onMessageSend(),
                     suffixIcon: controller.isSendingMessage.value
                         ? const CupertinoActivityIndicator()
-                        : CustomSvgAssetImage(
-                            onTap: controller.onJustSearchButton,
-                            image: controller.showSendIcon.value
-                                ? AppImages.icSearch
-                                : AppImages.icSearch,
-                            height: Dimensions.h25,
-                            width: Dimensions.h25,
-                            color: Theme.of(context).colorScheme.textColor,
+                        : IconButton(
+                            onPressed: () {},
+                            icon: CustomAssetImage(
+                              onTap: controller.onMessageSend,
+                              image: controller.showSendIcon.value
+                                  ? AppImages.isSend
+                                  : AppImages.isSend,
+                              height: Dimensions.w18,
+                              width: Dimensions.w18,
+                            ),
                           ),
                   ),
                 ),

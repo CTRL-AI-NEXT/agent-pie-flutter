@@ -19,12 +19,12 @@ class AppImages {
   static const String icBackArrow = "assets/icons/ic_back_arrow.svg";
   static const String icPlus = "assets/icons/ic_plus.svg";
   static const String icCancel = "assets/icons/ic_cancel.svg";
-  static const String icSearch = "assets/icons/ic_search.svg";
+  static const String isSend = "assets/icons/ic_send.png";
   static const String icAdmin = "assets/icons/ic_admin.svg";
   static const String icGallery = "assets/icons/ic_gallery.svg";
   static const String icCamera = "assets/icons/ic_camera.svg";
 
-  static const String icBackArrowNav = "assets/images/ic_back_arrow_nav.svg";
+  static const String icBackArrowNav = "assets/icons/ic_back_arrow_nav.svg";
 
   // static const String icNextArrowButton =
   //     "assets/images/ic_next_arrow_button.svg";
@@ -50,6 +50,9 @@ class AppImages {
       "assets/images/ic_actions_unfilled.png";
   static const String icProfileFilled = "assets/images/ic_profile_filled.png";
   static const String icProfileUnfilled = "assets/images/ic_profile_unfilled.png";
+
+  // Chat
+  static const String icLink = "assets/icons/ic_link.png";
 
 
   //<-------- Manager --------->
