@@ -16,10 +16,6 @@ class AppImages {
       "assets/images/ic_right_arrow_circle.svg";
 
   // Create Event
-  static const String icMapBg = "assets/icons/ic_map_bg.svg";
-  static const String imgMapBg = "assets/images/map_bg.png";
-  static const String icCreateEventIntro =
-      "assets/icons/ic_create_event_intro.svg";
   static const String icBackArrow = "assets/icons/ic_back_arrow.svg";
   static const String icPlus = "assets/icons/ic_plus.svg";
   static const String icCancel = "assets/icons/ic_cancel.svg";
@@ -40,4 +36,15 @@ class AppImages {
   // Dialog Box
   static const String icDialogueChecked = "assets/images/ic_checked.svg";
   static const String icDialogueQuestion = "assets/images/ic_question.svg";
+
+  // Bottom Nav
+  static const String icChatsFilled = "assets/images/ic_chats_filled.png";
+  static const String icChatsUnfilled = "assets/images/ic_chats_unfilled.png";
+  static const String icQuizFilled = "assets/images/ic_quiz_filled.png";
+  static const String icQuizUnfilled = "assets/images/ic_quiz_unfilled.png";
+  static const String icActionsFilled = "assets/images/ic_actions_filled.png";
+  static const String icActionsUnfilled =
+      "assets/images/ic_actions_unfilled.png";
+  static const String icProfileFilled = "assets/images/ic_profile_filled.png";
+  static const String icProfileUnfilled = "assets/images/ic_profile_unfilled.png";
 }

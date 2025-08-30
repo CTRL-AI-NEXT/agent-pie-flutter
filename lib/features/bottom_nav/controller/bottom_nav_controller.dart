@@ -17,32 +17,32 @@ class BottomNavController extends GetxController {
   ];
 
   final destinations = <FloatingNavItem>[
-    // Community
+    // Chats
     FloatingNavItem(
-      label: AppString.allowAccess,
-      filledSVGIcon: AppImages.icAdmin,
-      outlinedSVGIcon: AppImages.icAdmin,
+      label: AppString.chats,
+      filledIcon: AppImages.icChatsFilled,
+      outlinedIcon: AppImages.icChatsUnfilled,
     ),
 
-    // AI Creation
+    // Quiz
     FloatingNavItem(
-      label: AppString.allowAccess,
-      filledSVGIcon: AppImages.icAdmin,
-      outlinedSVGIcon: AppImages.icAdmin,
+      label: AppString.quiz,
+      filledIcon: AppImages.icQuizFilled,
+      outlinedIcon: AppImages.icQuizUnfilled,
     ),
 
-    // Event
+    // Actions
     FloatingNavItem(
-      label: AppString.allowAccess,
-      filledSVGIcon: AppImages.icAdmin,
-      outlinedSVGIcon: AppImages.icAdmin,
+      label: AppString.actions,
+      filledIcon: AppImages.icActionsFilled,
+      outlinedIcon: AppImages.icActionsUnfilled,
     ),
 
     // Profile
     FloatingNavItem(
-      label: AppString.allowAccess,
-      filledSVGIcon: AppImages.icAdmin,
-      outlinedSVGIcon: AppImages.icAdmin,
+      label: AppString.profile,
+      filledIcon: AppImages.icProfileFilled,
+      outlinedIcon: AppImages.icProfileUnfilled,
     ),
   ];
 
