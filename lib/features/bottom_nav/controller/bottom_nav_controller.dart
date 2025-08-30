@@ -46,6 +46,16 @@ class BottomNavController extends GetxController {
     ),
   ];
 
+  final selectedSopTitle = 'SOP 001 v1'.obs;
+  final sopTitles = <String>[
+    'SOP 001 v1',
+    'SOP 002 v1',
+    'SOP 003 v1',
+    'SOP 004 v1',
+    'SOP 005 v1',
+  ].obs;
+
+
   void onDestinationSelected(int index) => selectedIndex.value = index;
 
   void onPopInvokedWithResult(bool didPop, dynamic _) {

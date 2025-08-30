@@ -1,16 +1,11 @@
 import 'package:agent_pie/core/basic_features.dart';
 import 'package:agent_pie/core/model/ui_model/chat_message_response_model.dart';
+import 'package:agent_pie/features/bottom_nav/controller/bottom_nav_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 class ChatsController extends GetxController {
-  final sopTitles = <String>[
-    'SOP 001 v1',
-    'SOP 002 v1',
-    'SOP 003 v1',
-    'SOP 004 v1',
-    'SOP 005 v1',
-  ].obs;
-  final selectedSopTitle = 'SOP 001 v1'.obs;
+  final bottomNavController = Get.find<BottomNavController>();
+
   final messageList = <ChatMessageResponseModel>[
     ChatMessageResponseModel(
       id: '4',

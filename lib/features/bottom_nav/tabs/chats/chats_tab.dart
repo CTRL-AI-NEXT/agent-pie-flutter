@@ -1,7 +1,6 @@
 import 'package:agent_pie/core/basic_features.dart';
 import 'package:agent_pie/core/utils/shimmer_screen.dart';
 import 'package:agent_pie/core/widgets/custom_appbar.dart';
-import 'package:agent_pie/core/widgets/custom_bottom_sheet.dart';
 import 'package:agent_pie/core/widgets/custom_image.dart';
 import 'package:agent_pie/core/widgets/text_field/text_field/search_bar_text_field.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/chats/widgets/chat_bubble.dart';
@@ -19,34 +18,7 @@ class ChatsTab extends StatelessWidget {
     return GetBuilder<ChatsController>(
       init: ChatsController(),
       builder: (controller) => Scaffold(
-        appBar: defaultAppbar(
-          context: context,
-          onPressed: () {
-            CustomBottomSheet.instance.modalBottomSheet(
-              context: context,
-              child: Obx(
-                () => ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.sopTitles.length,
-                  itemBuilder: (context, index) {
-                    final sopTitle = controller.sopTitles[index];
-                    return CheckboxListTile(
-                      title: Text(sopTitle),
-                      value: controller.selectedSopTitle.value == sopTitle,
-                      onChanged: (value) {
-                        if (value == true) {
-                          controller.selectedSopTitle.value = sopTitle;
-                          Navigator.pop(context);
-                        }
-                      },
-                    );
-                  },
-                ),
-              ),
-            );
-          },
-          selectedSopTitle: controller.selectedSopTitle,
-        ),
+        appBar: bottomNavTabAppBar(),
         resizeToAvoidBottomInset: true,
         body: Obx(
           () => Column(

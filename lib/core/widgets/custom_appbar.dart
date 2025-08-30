@@ -1,7 +1,10 @@
+import 'package:agent_pie/features/bottom_nav/controller/bottom_nav_controller.dart';
+import 'package:agent_pie/features/bottom_nav/widgets/sop_bottom_sheet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../basic_features.dart';
+import 'custom_bottom_sheet.dart';
 import 'custom_image.dart';
 
 class CustomAppBar extends AppBar {
@@ -330,11 +333,8 @@ class CustomAppBar extends AppBar {
         );
 }
 
-PreferredSizeWidget defaultAppbar({
-  required BuildContext context,
-  required RxString selectedSopTitle,
-  required VoidCallback onPressed,
-}) {
+PreferredSizeWidget bottomNavTabAppBar() {
+  final controller = Get.find<BottomNavController>();
   return AppBar(
     title: CustomSvgAssetImage(
       image: AppImages.icAppIconFull,
@@ -343,12 +343,19 @@ PreferredSizeWidget defaultAppbar({
     actions: [
       Obx(
         () => TextButton(
-          onPressed: onPressed,
+          onPressed: () {
+            CustomBottomSheet.instance.modalBottomSheet(
+              context: Get.context!,
+              child: SOPBottomSheetView(
+                controller: controller,
+              ),
+            );
+          },
           child: Text(
-            selectedSopTitle.value,
+            controller.selectedSopTitle.value,
             style: AppTextStyles.montserrat(
               fontSize: Dimensions.sp14,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(Get.context!).colorScheme.primary,
             ),
           ),
         ),

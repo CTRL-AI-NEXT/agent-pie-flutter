@@ -1,10 +1,13 @@
+import 'package:agent_pie/core/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
-class  QuizTab extends StatelessWidget {
-  const  QuizTab({super.key});
+class QuizTab extends StatelessWidget {
+  const QuizTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: bottomNavTabAppBar(),
+    );
   }
 }
