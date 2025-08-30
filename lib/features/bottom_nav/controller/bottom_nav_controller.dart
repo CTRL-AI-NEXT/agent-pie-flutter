@@ -7,7 +7,7 @@ import '../tabs/profile/profile_tab.dart';
 import '../widgets/floating_nav_bar.dart';
 
 class BottomNavController extends GetxController {
-  final selectedIndex = 1.obs;
+  final selectedIndex = 0.obs;
 
   final screens = [
     ChatsTab(),

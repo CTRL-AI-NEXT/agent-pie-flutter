@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import '../../../basic_features.dart';
 import '../../custom_text_widget.dart';
 
-class SearchBarTextBoxField extends StatefulWidget {
+class SendMessageTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final double? height;
   final bool isRequiredField;
@@ -40,7 +40,7 @@ class SearchBarTextBoxField extends StatefulWidget {
   final String? hintText;
   final Function? onTap;
 
-  const SearchBarTextBoxField(
+  const SendMessageTextField(
       {super.key,
       this.inputFormatters,
       this.height,
@@ -77,10 +77,10 @@ class SearchBarTextBoxField extends StatefulWidget {
       this.maxLines});
 
   @override
-  State<SearchBarTextBoxField> createState() => _SearchBarTextBoxFieldState();
+  State<SendMessageTextField> createState() => _SendMessageTextFieldState();
 }
 
-class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
+class _SendMessageTextFieldState extends State<SendMessageTextField> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -207,7 +207,7 @@ class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
                 onTap: () {
                   widget.onTap?.call();
                 },
-                textInputAction: TextInputAction.search,
+                textInputAction: TextInputAction.send,
                 keyboardType: TextInputType.text),
           ),
         ],

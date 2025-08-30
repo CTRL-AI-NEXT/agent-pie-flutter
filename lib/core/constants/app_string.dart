@@ -85,7 +85,10 @@ class AppString {
   static const String currentBuildModeKey = "currentBuildModeKey";
 
   static const String itsQuietHere = "It’s Quiet Here";
-  static const String enterYourQuestionHere = "Enter your question here...";
+  static const String askMeAnything =
+      "Ask me anything about our SOPs...";
   static const String sayHiToBeginChatting = "Say hi to begin chatting";
+  static const String today = "Today";
+  static const String yesterday = "Yesterday";
 
 }
