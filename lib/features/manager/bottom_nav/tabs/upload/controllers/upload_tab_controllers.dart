@@ -1,4 +1,5 @@
 import 'package:agent_pie/core/network/api_helper.dart';
+import 'package:agent_pie/core/network/network_constant.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -31,15 +32,11 @@ class UploadTabController extends GetxController with GetSingleTickerProviderSta
           uploadAnimationController.repeat();
         }
 
-        var params = {
-          // Add any other parameters here
-        };
-
-        await APIHelper.instance.callPostMultiPart(
-          "your/upload/endpoint", // Replace with your actual endpoint
-          params,
-          true, // show loader
+        await APIHelper.instance.callPostFile(
+          NetworkConstant.sops,
           filePath,
+          true, // show loader
+          queryParameters: {'manager_id': '4'},
           onSendProgress: (sent, total) {
             if (total != -1) {
               uploadProgress.value = sent / total;

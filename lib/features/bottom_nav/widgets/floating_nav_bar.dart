@@ -10,9 +10,11 @@ class FloatingBottomNavBar extends StatelessWidget {
   final List<FloatingNavItem> items;
   final int selectedIndex;
   final Function(int) onTap;
+  final Function(int)? onLongPress;
 
   const FloatingBottomNavBar({
     super.key,
+    this.onLongPress,
     required this.items,
     required this.selectedIndex,
     required this.onTap,
@@ -56,6 +58,7 @@ class FloatingBottomNavBar extends StatelessWidget {
 
                         return InkWell(
                           onTap: () => onTap(index),
+                          onLongPress: () => onLongPress != null ? onTap(index) : null,
                           borderRadius: BorderRadius.circular(Dimensions.r100),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 340),

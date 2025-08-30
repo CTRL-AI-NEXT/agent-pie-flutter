@@ -99,4 +99,7 @@ class AppString {
   static const String yesterday = "Yesterday";
   static const String loginResponseModelKey = "loginResponseModelKey";
 
+  static var loggedInSuccessfully = "Logged in successfully";
+  static var loggedOutSuccessfully = "Logged out successfully";
+
 }

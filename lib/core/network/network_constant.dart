@@ -12,6 +12,10 @@ class NetworkConstant {
   // Authentication
   static const login = "login";
 
+  // Chat
+  static const chat = "chat";
+  static const quizzes = "quizzes";
+  static const sops = "sops";
   // Home
   static const training = "training";
 

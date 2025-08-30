@@ -72,11 +72,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
             title: AppString.appName,
-            home: loginResponseModel == null
-                ? const LoginScreen()
-                : loginResponseModel?.isManager ?? false
-                    ? const ManagerBottomNavScreen()
-                    : const BottomNavScreen(),
+            home: ManagerBottomNavScreen(),
+            // home: loginResponseModel == null
+            //     ? const LoginScreen()
+            //     : loginResponseModel?.isManager ?? false
+            //         ? const ManagerBottomNavScreen()
+            //         : const BottomNavScreen(),
           ),
         ),
       );

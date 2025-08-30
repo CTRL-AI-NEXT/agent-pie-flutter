@@ -101,7 +101,7 @@ class LoginScreen extends StatelessWidget {
                                   ))),
                           SizedBox(height: Dimensions.h16),
                           MyButton(
-                            onPressed: controller.callSignInAPI,
+                            onPressed: controller.login,
                             title: AppString.login,
                           ),
                         ],
