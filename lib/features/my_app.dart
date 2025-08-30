@@ -1,3 +1,4 @@
+import 'package:agent_pie/features/auth/login_screen.dart';
 import 'package:agent_pie/features/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,7 +67,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
             title: AppString.appName,
-            home: const BottomNavScreen(),
+            home: const LoginScreen(),
           ),
         ),
       );

@@ -40,4 +40,7 @@ class AppImages {
   // Dialog Box
   static const String icDialogueChecked = "assets/images/ic_checked.svg";
   static const String icDialogueQuestion = "assets/images/ic_question.svg";
+
+  // Login Screen
+  static const String icAppIconFull = "assets/icons/splash_icon.svg";
 }
