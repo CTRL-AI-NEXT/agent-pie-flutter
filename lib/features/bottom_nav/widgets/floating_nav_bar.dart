@@ -43,7 +43,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: Dimensions.h3),
                     decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
+                      color: AppColors.blackColor,
                       // Semi-Transparent glass
                       borderRadius: BorderRadius.circular(Dimensions.r30),
                     ),
@@ -111,8 +111,8 @@ class FloatingBottomNavBar extends StatelessWidget {
                                       child: CustomAssetImage(
                                         key: ValueKey(isSelected),
                                         image: isSelected
-                                            ? item.filledSVGIcon
-                                            : item.outlinedSVGIcon,
+                                            ? item.filledIcon
+                                            : item.outlinedIcon,
                                         width: Dimensions.w20,
                                         height: Dimensions.w20,
                                         imageColor: !isSelected
@@ -166,13 +166,13 @@ class FloatingBottomNavBar extends StatelessWidget {
 }
 
 class FloatingNavItem {
-  final String filledSVGIcon;
-  final String outlinedSVGIcon;
+  final String filledIcon;
+  final String outlinedIcon;
   final String label;
 
   FloatingNavItem({
-    required this.filledSVGIcon,
-    required this.outlinedSVGIcon,
+    required this.filledIcon,
+    required this.outlinedIcon,
     required this.label,
   });
 }

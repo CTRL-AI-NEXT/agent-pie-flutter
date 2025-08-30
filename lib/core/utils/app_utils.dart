@@ -593,6 +593,39 @@ class AppUtils {
 
   static DateTime? backButtonPressedTime;
 
+  static TextSpan aIFormattedText(String input) {
+    TextSpan formattedSpans(String input) {
+      final List<TextSpan> spans = [];
+      final RegExp regex = RegExp(r'\*\*(.*?)\*\*');
+      int lastMatchEnd = 0;
+
+      for (final match in regex.allMatches(input)) {
+        if (match.start > lastMatchEnd) {
+          spans.add(TextSpan(
+            text: input.substring(lastMatchEnd, match.start),
+            style: TextStyle(fontWeight: FontWeight.normal),
+          ));
+        }
+        spans.add(TextSpan(
+          text: match.group(1),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ));
+        lastMatchEnd = match.end;
+      }
+
+      if (lastMatchEnd < input.length) {
+        spans.add(TextSpan(
+          text: input.substring(lastMatchEnd),
+          style: TextStyle(fontWeight: FontWeight.normal),
+        ));
+      }
+
+      return TextSpan(children: spans);
+    }
+    return formattedSpans(input);
+  }
+
+
   // For Pop Scope
   static showExitPopScopePopup() {
     DateTime currentTime = DateTime.now();

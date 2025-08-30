@@ -76,8 +76,16 @@ class AppString {
   static const String done = "Done";
 
   // Bottom Tab Navigation
-
+  static const String chats = "Chats";
+  static const String quiz = "Quiz";
+  static const String actions = "Actions";
+  static const String profile = "Profile";
 
   // Preference Storage Keys
   static const String currentBuildModeKey = "currentBuildModeKey";
+
+  static const String itsQuietHere = "It’s Quiet Here";
+  static const String enterYourQuestionHere = "Enter your question here...";
+  static const String sayHiToBeginChatting = "Say hi to begin chatting";
+
 }
