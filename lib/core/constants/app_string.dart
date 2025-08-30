@@ -97,5 +97,6 @@ class AppString {
   static const String sayHiToBeginChatting = "Say hi to begin chatting";
   static const String today = "Today";
   static const String yesterday = "Yesterday";
+  static const String loginResponseModelKey = "loginResponseModelKey";
 
 }

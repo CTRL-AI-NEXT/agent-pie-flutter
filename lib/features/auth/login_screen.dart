@@ -16,6 +16,7 @@ class LoginScreen extends StatelessWidget {
       init: LoginScreenController(),
       builder: (controller) {
         return Scaffold(
+          resizeToAvoidBottomInset: true,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.h20,
                     ),
-                    CustomSvgAssetImage(image: AppImages.icAppIconFull),
+                    const CustomSvgAssetImage(image: AppImages.icAppIconFull),
                     SizedBox(
                         width: Get.width * 0.7,
                         height: Dimensions.h200,
@@ -33,29 +34,29 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.h60,
                     ),
-                    Obx(
-                        () => CupertinoSlidingSegmentedControl<String>(
-                          padding: EdgeInsets.all(8),
-                          groupValue: controller.selectedLoginMode.value,
-                          children: {
-                            "user": Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Text("User"),
-                            ),
-                            "admin": Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Text("Admin"),
-                            ),
-                          },
-                          onValueChanged: (value) {
-                            if (value != null) {
-                              controller.selectedLoginMode.value = value;
-                            }
-                          },
-                        )
-
-                      ,
-                    ),
+                    // Obx(
+                    //     () => CupertinoSlidingSegmentedControl<String>(
+                    //       padding: const EdgeInsets.all(8),
+                    //       groupValue: controller.selectedLoginMode.value,
+                    //       children: {
+                    //         "user": const Padding(
+                    //           padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    //           child: Text("User"),
+                    //         ),
+                    //         "admin": const Padding(
+                    //           padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    //           child: Text("Admin"),
+                    //         ),
+                    //       },
+                    //       onValueChanged: (value) {
+                    //         if (value != null) {
+                    //           controller.selectedLoginMode.value = value;
+                    //         }
+                    //       },
+                    //     )
+                    //
+                    //   ,
+                    // ),
                     SizedBox(height: Dimensions.h16,),
                     Form(
                       key: controller.formKey,
@@ -68,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                             validator: controller.validateEmail,
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: Dimensions.w10),
-                              child: Icon(CupertinoIcons.mail),
+                              child: const Icon(CupertinoIcons.mail),
                             ),
                           ),
                           SizedBox(height: Dimensions.h16),
@@ -79,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                             validator: controller.validatePassword,
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: Dimensions.w10),
-                              child: Icon(CupertinoIcons.lock),
+                              child: const Icon(CupertinoIcons.lock),
                             ),
                           ),
                           SizedBox(height: Dimensions.h8),
@@ -100,7 +101,7 @@ class LoginScreen extends StatelessWidget {
                                   ))),
                           SizedBox(height: Dimensions.h16),
                           MyButton(
-                            onPressed: controller.login,
+                            onPressed: controller.callSignInAPI,
                             title: AppString.login,
                           ),
                         ],

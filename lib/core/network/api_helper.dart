@@ -565,14 +565,14 @@ class APIHelper {
         "Content-Type": "application/json",
         "device-id": AppUtils.deviceID.toString(),
         "Accept": "application/json",
-        "Accept-Language": "english",
-        "device-type": Platform.isIOS ? "ios" : "Android",
-        "device-name": Platform.isIOS
-            ? AppUtils.iosInfo?.name ?? ''
-            : AppUtils.androidInfo?.model ?? '',
-        'app-environment': Environment.config.environment,
-        if (authToken != null && authToken.isNotEmpty)
-          NetworkConstant.authorization: NetworkConstant.bearer + authToken,
+        // "Accept-Language": "english",
+        // "device-type": Platform.isIOS ? "ios" : "Android",
+        // "device-name": Platform.isIOS
+        //     ? AppUtils.iosInfo?.name ?? ''
+        //     : AppUtils.androidInfo?.model ?? '',
+        // 'app-environment': Environment.config.environment,
+        // if (authToken != null && authToken.isNotEmpty)
+        //   NetworkConstant.authorization: NetworkConstant.bearer + authToken,
       };
     }
   }
