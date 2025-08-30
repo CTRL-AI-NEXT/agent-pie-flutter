@@ -594,7 +594,7 @@ class AppUtils {
   static DateTime? backButtonPressedTime;
 
   // For Pop Scope
-  static showExitPopScopePopup(BuildContext context) {
+  static showExitPopScopePopup() {
     DateTime currentTime = DateTime.now();
 
     bool backButton = backButtonPressedTime == null ||

@@ -315,7 +315,7 @@ class CustomAssetImage extends StatelessWidget {
     this.width,
     this.imageColor,
     required this.image,
-    required this.onTap,
+       this.onTap,
   });
 
   @override
