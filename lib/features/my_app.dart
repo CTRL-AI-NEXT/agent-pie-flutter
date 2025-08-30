@@ -1,3 +1,4 @@
+import 'package:agent_pie/features/bottom_nav/bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +8,6 @@ import '../core/basic_features.dart';
 import '../core/localization/languages.dart';
 import '../core/storage/preference_storage.dart';
 import '../core/theme/app_theme_data.dart';
-import 'onboarding/welcome_screen.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
             title: AppString.appName,
-            home: const WelcomeScreen(),
+            home: const BottomNavScreen(),
           ),
         ),
       );
