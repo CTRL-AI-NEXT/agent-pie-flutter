@@ -1,8 +1,11 @@
 import 'package:agent_pie/core/basic_features.dart';
 import 'package:agent_pie/core/constants/app_colors.dart';
+import 'package:agent_pie/core/utils/enum.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/actions/controller/actions_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Step;
 import 'package:get/get.dart';
+
+import '../../../../core/model/response_model/training_response_model.dart';
 
 class ActionsTab extends StatelessWidget {
   const ActionsTab({super.key});
@@ -15,7 +18,7 @@ class ActionsTab extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: const Text(
-          'Cooking Safety: Perfect Pasta',
+          'Cooking Safety: Instructions',
           style: TextStyle(
             color: AppColors.whiteColor,
             fontWeight: FontWeight.bold,
@@ -34,7 +37,7 @@ class ActionsTab extends StatelessWidget {
         height: Get.height,
         width: Get.width,
         child: Obx(() {
-          if (controller.currentStep.value >= controller.recipeSteps.length) {
+          if (controller.currentStep.value >= controller.recipeSteps.length && controller.trainingResult.value.apiResultType != APIResultType.loading) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +91,7 @@ class ActionsTab extends StatelessWidget {
 }
 
 class RecipeCard extends StatelessWidget {
-  final RecipeStep step;
+  final Step step;
 
   const RecipeCard({super.key, required this.step});
 
@@ -109,7 +112,7 @@ class RecipeCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              step.stepNumber,
+              step.order.toString() ?? '',
               style: const TextStyle(
                 color: AppColors.primaryColor,
                 fontSize: 20.0,
@@ -118,7 +121,7 @@ class RecipeCard extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Text(
-              step.title,
+              step.title ?? "",
               style: const TextStyle(
                 color: AppColors.whiteColor,
                 fontSize: 28.0,
@@ -134,7 +137,7 @@ class RecipeCard extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  step.icon,
+                  Icons.rice_bowl,
                   color: AppColors.primaryColor,
                   size: 80.0,
                 ),
@@ -142,7 +145,7 @@ class RecipeCard extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             Text(
-              step.description,
+              step.description ?? "",
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: AppColors.textGreyColor,

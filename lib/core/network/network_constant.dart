@@ -13,6 +13,7 @@ class NetworkConstant {
   static const login = "login";
 
   // Home
+  static const training = "training";
 
   // On Boarding
 
