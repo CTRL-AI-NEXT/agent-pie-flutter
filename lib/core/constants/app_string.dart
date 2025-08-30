@@ -1,5 +1,5 @@
 class AppString {
-  static const appName = "<Project Name Here>";
+  static const appName = "Agent Pie";
   static const letsGetStarted = "Lets Get Started";
   static const String next = "Next";
   static const welcomeBack = "Welcome Back";
@@ -25,39 +25,6 @@ class AppString {
   static const String takeAPhoto = "Take a Photo";
   static const String chooseFromGallery = "Choose from Gallery";
 
-
-
-  // Firebase phone auth
-  static const String dataNotFound = "Data Not Found";
-  static const String submit = "Submit";
-  static const String verifyAccount = "Verify Account";
-  static const String invalidOTP = "Invalid OTP. Please try again.";
-  static const String sendAnotherCodeIn = "Send another code in ";
-  static const String secWithFullStop = " sec.";
-  static const String resendCodeAgain = "Resend code again";
-  static const String mobileNumber = "Mobile number";
-  static const String continueText = "Continue";
-  static const String verify = "Verify";
-  static const String enterFullName = "Please enter your full name.";
-  static const String pleaseEnterUserName =
-      "Please enter a username to continue.";
-  static const String pleaseSelectAtLeastTopic =
-      "Please select at least one health topic to continue!";
-  static const String pleaseSelectReasonToReportPost =
-      "Please select a reason to report the post!";
-  static const String pleaseSelectReasonToReportUser =
-      "Please select a reason to report the user!";
-  static const String pleaseEnterAnEmailAddress =
-      "Please enter an email address.";
-  static const String pleaseEnterAPassword =
-      "Please enter a password to continue.";
-  static const String passwordShouldBeAtLeast8CharactersLong =
-      "Password should be at least 8 characters long.";
-  static const String pleaseEnterValidPhoneNumber =
-      "Please enter valid phone number";
-  static const String pleaseEnterOtp = "Please enter OTP";
-  static const String verifyYourAccountDesc =
-      "Please enter the verification code that we sent to";
 
   // PERMISSION HANDLE DIALOG
   static const String permissionCancel = "Cancel";
@@ -103,6 +70,9 @@ class AppString {
   static const String cancel = "Cancel";
   static const String ok = "Ok";
   static const String done = "Done";
+
+  // Bottom Tab Navigation
+
 
   // Preference Storage Keys
   static const String currentBuildModeKey = "currentBuildModeKey";
