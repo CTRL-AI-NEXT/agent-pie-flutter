@@ -16,14 +16,14 @@ class ManagerBottomNavController extends GetxController {
   final destinations = <FloatingNavItem>[
     // Quiz
     FloatingNavItem(
-      label: AppString.quiz,
+      label: AppString.dashboard,
       filledIcon: AppImages.icDashboardFilled,
       outlinedIcon: AppImages.icDashboard,
     ),
 
     // Actions
     FloatingNavItem(
-      label: AppString.actions,
+      label: AppString.upload,
       filledIcon: AppImages.icUploadFilled,
       outlinedIcon: AppImages.icUpload,
     ),

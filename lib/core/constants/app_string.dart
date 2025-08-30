@@ -85,6 +85,8 @@ class AppString {
   static const String quiz = "Quiz";
   static const String actions = "Actions";
   static const String profile = "Profile";
+  static const String dashboard = "Dashboard";
+  static const String upload = "Upload";
 
   // Preference Storage Keys
   static const String currentBuildModeKey = "currentBuildModeKey";

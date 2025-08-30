@@ -397,26 +397,26 @@ class AppUtils {
     }
   }
 
-  static Future<void> getCurrentLocation() async {
-    if (await AppUtils.haveLocationPermission()) {
-      EasyLoading.show();
-      /*final position =*/
-      await Geolocator.getCurrentPosition(
-        locationSettings: LocationSettings(
-          accuracy: LocationAccuracy.high,
-          // distanceFilter: 10,
-        ),
-      );
-
-      // double latitude = position.latitude;
-      // double longitude = position.longitude;
-
-      EasyLoading.dismiss();
-      // AppUtils.showSnackBar(
-      //     message: "Latitude: $latitude, Longitude: $longitude",
-      //     isSuccess: true);
-    }
-  }
+  // static Future<void> getCurrentLocation() async {
+  //   if (await AppUtils.haveLocationPermission()) {
+  //     EasyLoading.show();
+  //     /*final position =*/
+  //     await Geolocator.getCurrentPosition(
+  //       locationSettings: LocationSettings(
+  //         accuracy: LocationAccuracy.high,
+  //         // distanceFilter: 10,
+  //       ),
+  //     );
+  //
+  //     // double latitude = position.latitude;
+  //     // double longitude = position.longitude;
+  //
+  //     EasyLoading.dismiss();
+  //     // AppUtils.showSnackBar(
+  //     //     message: "Latitude: $latitude, Longitude: $longitude",
+  //     //     isSuccess: true);
+  //   }
+  // }
 
   static RegExp amountRegExp = RegExp(r'([.]*0)(?!.*\d)');
 
