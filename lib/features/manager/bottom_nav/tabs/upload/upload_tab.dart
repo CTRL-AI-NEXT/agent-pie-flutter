@@ -54,6 +54,7 @@ class UploadTab extends StatelessWidget {
                             AppImages.fileUploadLottie,
                           ),
                         ),
+
                         SizedBox(
                           width: Get.width * 0.4,
                           child: MyButton(
