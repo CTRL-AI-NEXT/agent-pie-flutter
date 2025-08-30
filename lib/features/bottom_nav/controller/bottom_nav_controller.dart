@@ -10,10 +10,10 @@ class BottomNavController extends GetxController {
   final selectedIndex = 0.obs;
 
   final screens = [
-    ChatsTab(),
-    QuizTab(),
-    ActionsTab(),
-    ProfileTab(),
+    const ChatsTab(),
+    const QuizTab(),
+    const ActionsTab(),
+    const ProfileTab(),
   ];
 
   final destinations = <FloatingNavItem>[

@@ -8,16 +8,15 @@ import '../utils/style.dart';
 class AppThemeData {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
-    dialogBackgroundColor: Colors.white.withValues(alpha: 0.01),
     primaryColor: const Color(0xff8C74FB),
-    shadowColor: Colors.white38,
-    splashColor: AppColors.primaryLightColor.withValues(alpha: 0.2),
-    highlightColor: AppColors.primaryLightColor.withValues(alpha: 0.1),
+    shadowColor: AppColors.primaryColor.withOpacity(0.1),
+    splashColor: AppColors.primaryColor.withOpacity(0.05),
+    highlightColor: AppColors.primaryColor.withOpacity(0.02),
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: AppColors.primaryColor,
     ),
-    canvasColor: AppColors.backgroundColorDark,
+    canvasColor: AppColors.primaryColor.withOpacity(0.01), // For InkWell splash
     scaffoldBackgroundColor: AppColors.backgroundColorDark,
     cardColor: const Color(0xff202020),
     hintColor: AppColors.hintColor,
@@ -66,5 +65,8 @@ class AppThemeData {
         style: ButtonStyle(
             overlayColor:
                 WidgetStateProperty.all(AppColors.primaryLightColor))),
+    dialogTheme: DialogThemeData(
+        backgroundColor: Colors.white.withValues(alpha: 0.01)),
+
   );
 }

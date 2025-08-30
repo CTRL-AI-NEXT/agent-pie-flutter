@@ -128,7 +128,7 @@ class MyButton extends StatelessWidget {
             Text(title!,
                 textAlign: TextAlign.center,
                 style: textStyle ??
-                    fontStyleRegular16.copyWith(color: Colors.white)),
+                    fontStyleRegular14.copyWith(color: Colors.white)),
       ),
     );
   }

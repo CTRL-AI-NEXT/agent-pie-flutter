@@ -64,7 +64,7 @@ dependencies:
   date_field: 6.0.3+1
 
   # Other UI Elements
-  flutter_animate: ^4.2.0+1
+  flutter_animate: ^4.5.2
   timeago: ^3.6.0
   chewie: ^1.7.4
   cropperx: ^1.1.1

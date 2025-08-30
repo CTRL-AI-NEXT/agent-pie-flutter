@@ -64,5 +64,6 @@ class AppImages {
 
   // Chat
   static const String icLink = "assets/icons/ic_link.png";
+  static const String icArrowDown = "assets/icons/ic_arrow_down.svg";
 
 }

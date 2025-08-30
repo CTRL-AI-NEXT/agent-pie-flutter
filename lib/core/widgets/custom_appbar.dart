@@ -342,20 +342,48 @@ PreferredSizeWidget bottomNavTabAppBar() {
     ),
     actions: [
       Obx(
-        () => TextButton(
-          onPressed: () {
-            CustomBottomSheet.instance.modalBottomSheet(
-              context: Get.context!,
-              child: SOPBottomSheetView(
-                controller: controller,
+        () => Padding(
+          padding: EdgeInsets.only(right: Dimensions.w10),
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: Dimensions.w10,
+              vertical: Dimensions.h4,
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(Dimensions.r10),
+            ),
+            child: InkWell(
+              onTap:  () {
+                CustomBottomSheet.instance.modalBottomSheet(
+                  context: Get.context!,
+                  child: SOPBottomSheetView(
+                    controller: controller,
+                  ),
+                );
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Text(
+                      controller.selectedSopTitle.value,
+                      style: fontStyleRegular12.copyWith(
+                        fontSize: Dimensions.sp10,
+                        color: AppColors.whiteColor,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(width: Dimensions.w5),
+                  CustomSvgAssetImage(
+                    image: AppImages.icArrowDown,
+                    width: Dimensions.w12,
+                    height: Dimensions.w12,
+                    color: AppColors.whiteColor,
+                  ),
+                ],
               ),
-            );
-          },
-          child: Text(
-            controller.selectedSopTitle.value,
-            style: AppTextStyles.montserrat(
-              fontSize: Dimensions.sp14,
-              color: Theme.of(Get.context!).colorScheme.primary,
             ),
           ),
         ),
