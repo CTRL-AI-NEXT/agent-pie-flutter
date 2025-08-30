@@ -4,8 +4,8 @@ class AppColors {
   static Color shimmerBaseColor = Colors.grey.shade200;
   static Color shimmerHighLightColor = Colors.grey.shade400;
 
-  static const Color primaryColor = Color(0xff1CBA6F);
-  static const Color primaryLightColor = Color(0xff95FDCB);
+  static const Color primaryColor = Color(0xffFFCC91);
+  static const Color primaryLightColor = Color(0xffffdeb6);
   static Color snackBarBackgroundColor = Color(0xff80f8bf);
   static Color snackBarBorderColor = Color(0xff1CBA6F);
   static const Color greyColor = Color(0xffCBCBCB);
@@ -13,8 +13,8 @@ class AppColors {
   static const Color darkSmokeGray = Color(0x801E1E2C);
   static const Color whiteColor = Color(0xffffffff);
   static const Color textFieldColor = Color(0xffF3F5F6);
-  static const Color backgroundColor = Color(0xffF3F5F6);
-  static const Color backgroundColorDark = Color(0xff0a0908);
+  static const Color backgroundColor = Color(0xff1F1F1F);
+  static const Color backgroundColorDark = Color(0xff1F1F1F);
 
   static const Color dividerColor = Color(0xfff9f9f9);
   static Color textFieldBorderColor = primaryColor.withValues(alpha: 0.5);
