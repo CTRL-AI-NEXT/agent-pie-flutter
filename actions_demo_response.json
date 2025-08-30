@@ -1,0 +1,121 @@
+{
+  "id": 9,
+  "sop_id": 4,
+  "created_at": "2025-08-30T18:45:50.846975+05:30",
+  "steps": [
+    {
+      "title": "Gather and prepare materials",
+      "description": "Collect all required ingredients and equipment, and prep produce to ensure a smooth cooking and assembly process.",
+      "substeps": [
+        {
+          "text": "Verify ingredient availability: Ground beef patty (1/4 lb), Hamburger bun, American cheese slice, Lettuce leaf, Tomato slice, Red onion rings, Pickle slices, Sauce (ketchup/mustard/mayonnaise), Salt & pepper"
+        },
+        {
+          "text": "Prepare equipment: Grill or griddle, Spatula, Grill press (optional), Serving tray"
+        },
+        {
+          "text": "Wash and pat dry lettuce, tomato, onion; slice if needed"
+        }
+      ],
+      "order": 1,
+      "id": 4,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    },
+    {
+      "title": "Preheat and ready the grill",
+      "description": "Set up the cooking surface to the correct temperature for searing and safe cooking.",
+      "substeps": [
+        {
+          "text": "Preheat grill or griddle to 400°F (204°C)"
+        },
+        {
+          "text": "Clean and lightly oil the cooking surface"
+        },
+        {
+          "text": "Stage tools (spatula, optional grill press, tray) within easy reach"
+        }
+      ],
+      "order": 2,
+      "id": 5,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    },
+    {
+      "title": "Form and season the patty",
+      "description": "Shape the ground beef and season to ensure even cooking and balanced flavor.",
+      "substeps": [
+        {
+          "text": "Gently form 1/4 lb ground beef into a patty about 1 cm (0.4 in) thick"
+        },
+        {
+          "text": "Season both sides with a pinch of salt and pepper"
+        }
+      ],
+      "order": 3,
+      "id": 6,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    },
+    {
+      "title": "Grill the patty to doneness",
+      "description": "Cook the patty to a safe internal temperature with a proper sear.",
+      "substeps": [
+        {
+          "text": "Place the patty on the hot grill and cook for 3 minutes"
+        },
+        {
+          "text": "Flip the patty and cook for another 3 minutes, or until internal temperature reaches 71°C (160°F) and juices run clear"
+        }
+      ],
+      "order": 4,
+      "id": 7,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    },
+    {
+      "title": "Melt the cheese",
+      "description": "Finish the patty with melted cheese for classic cheeseburger flavor and texture.",
+      "substeps": [
+        {
+          "text": "During the last 30 seconds of cooking, place 1 slice of American cheese on the patty to melt"
+        }
+      ],
+      "order": 5,
+      "id": 8,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    },
+    {
+      "title": "Toast and sauce the bun",
+      "description": "Lightly toast the bun and apply sauces to both sides for flavor distribution and texture.",
+      "substeps": [
+        {
+          "text": "Lightly toast the hamburger bun on the grill for 30 seconds"
+        },
+        {
+          "text": "Spread a thin layer of chosen sauce on the inside of both the top and bottom buns"
+        }
+      ],
+      "order": 6,
+      "id": 9,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    },
+    {
+      "title": "Assemble and serve the burger",
+      "description": "Build the burger in the specified order and serve immediately to maintain optimal temperature and texture.",
+      "substeps": [
+        {
+          "text": "Place the cooked, cheesy patty on the bottom bun"
+        },
+        {
+          "text": "Layer toppings in order: lettuce, tomato, red onion, pickles"
+        },
+        {
+          "text": "Place the top bun on the assembled burger"
+        },
+        {
+          "text": "Serve immediately while hot on a serving tray"
+        }
+      ],
+      "order": 7,
+      "id": 10,
+      "created_at": "2025-08-30T18:45:50.854271+05:30"
+    }
+  ]
+}

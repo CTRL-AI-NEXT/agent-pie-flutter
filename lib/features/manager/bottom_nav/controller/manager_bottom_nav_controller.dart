@@ -1,7 +1,7 @@
 import 'package:agent_pie/core/basic_features.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/profile/profile_tab.dart';
-import 'package:agent_pie/features/manager/tabs/dashboard/dashboard_tab.dart';
-import 'package:agent_pie/features/manager/tabs/upload/upload_tab.dart';
+import '../tabs/dashboard/dashboard_tab.dart';
+import '../tabs/upload/upload_tab.dart';
 import '../widgets/floating_nav_bar.dart';
 
 class ManagerBottomNavController extends GetxController {

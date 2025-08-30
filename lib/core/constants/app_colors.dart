@@ -7,7 +7,7 @@ class AppColors {
   static const Color primaryColor = Color(0xffFFCC91);
   static const Color primaryDarkColor = Color(0xffd29965);
   static const Color primaryLightColor = Color(0xffffdeb6);
-  static Color snackBarBackgroundColor = Color(0xff80f8bf);
+  static Color snackBarBackgroundColor = Color(0xffffdeb6);
   static Color snackBarBorderColor = Color(0xff1CBA6F);
   static const Color greyColor = Color(0xffCBCBCB);
   static const Color blackColor = Color(0xff000000);

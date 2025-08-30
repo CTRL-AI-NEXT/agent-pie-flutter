@@ -10,6 +10,7 @@ class NetworkConstant {
   static const googleAPIKey = "<YOUR_GOOGLE_API_KEY>";
 
   // Authentication
+  static const login = "login";
 
   // Home
 

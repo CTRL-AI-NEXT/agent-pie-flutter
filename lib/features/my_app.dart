@@ -1,5 +1,7 @@
+import 'package:agent_pie/core/model/response_model/login_response_model.dart';
 import 'package:agent_pie/features/auth/login_screen.dart';
 import 'package:agent_pie/features/bottom_nav/bottom_nav_screen.dart';
+import 'package:agent_pie/features/manager/bottom_nav/manager_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,6 +46,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     });
   }
 
+  LoginResponseModel? loginResponseModel =
+      PreferenceStorage.getLoginResponseModel();
+
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
         designSize: const Size(360, 690),
@@ -67,7 +72,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
             title: AppString.appName,
-            home: const LoginScreen(),
+            home: loginResponseModel == null
+                ? const LoginScreen()
+                : loginResponseModel?.isManager ?? false
+                    ? const ManagerBottomNavScreen()
+                    : const BottomNavScreen(),
           ),
         ),
       );

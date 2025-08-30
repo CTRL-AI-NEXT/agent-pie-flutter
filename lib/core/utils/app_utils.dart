@@ -145,11 +145,11 @@ class AppUtils {
               Row(
                 children: [
                   // Action Icon
-                  CustomSvgAssetImage(
-                    image: AppImages.icCheckCircle,
-                    width: Dimensions.w30,
-                    height: Dimensions.w30,
-                  ),
+                  // CustomSvgAssetImage(
+                  //   image: AppImages.icCheckCircle,
+                  //   width: Dimensions.w30,
+                  //   height: Dimensions.w30,
+                  // ),
 
                   // Title Text
                   Padding(
@@ -191,13 +191,13 @@ class AppUtils {
   }
 
   static Future<void> validateAuthTokenExpiry() async {
-    final authAccessToken = await PreferenceStorage.getAuthAccessToken();
-
-    if (authAccessToken != null && JwtDecoder.isExpired(authAccessToken)) {
-      // final signInController = Get.put(SignInController()); // Create instance
-      // await signInController.callRefreshToken(); // Call method
-      // Get.delete<SignInController>(); // Delete instance after execution
-    }
+    // final authAccessToken = await PreferenceStorage.getAuthAccessToken();
+    //
+    // if (authAccessToken != null && JwtDecoder.isExpired(authAccessToken)) {
+    //   // final signInController = Get.put(SignInController()); // Create instance
+    //   // await signInController.callRefreshToken(); // Call method
+    //   // Get.delete<SignInController>(); // Delete instance after execution
+    // }
   }
 
 
