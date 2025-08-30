@@ -26,6 +26,10 @@ class AppString {
   static const String chooseFromGallery = "Choose from Gallery";
 
 
+  // Login Screen
+  static const String login = "Login";
+  static const String forgotPassword = "Forgot Password";
+
   // PERMISSION HANDLE DIALOG
   static const String permissionCancel = "Cancel";
   static const String permissionSetting = "Settings";

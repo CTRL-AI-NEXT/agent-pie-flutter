@@ -37,6 +37,9 @@ class AppImages {
   static const String icDialogueChecked = "assets/images/ic_checked.svg";
   static const String icDialogueQuestion = "assets/images/ic_question.svg";
 
+  // Login Screen
+  static const String icAppIconFull = "assets/icons/splash_icon.svg";
+
   // Bottom Nav
   static const String icChatsFilled = "assets/images/ic_chats_filled.png";
   static const String icChatsUnfilled = "assets/images/ic_chats_unfilled.png";

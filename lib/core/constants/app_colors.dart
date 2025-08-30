@@ -12,7 +12,7 @@ class AppColors {
   static const Color blackColor = Color(0xff000000);
   static const Color darkSmokeGray = Color(0x801E1E2C);
   static const Color whiteColor = Color(0xffffffff);
-  static const Color textFieldColor = Color(0xffF3F5F6);
+  static const Color textFieldColor = Color(0xff000000);
   static const Color backgroundColor = Color(0xff1F1F1F);
   static const Color backgroundColorDark = Color(0xff1F1F1F);
 
@@ -22,7 +22,7 @@ class AppColors {
   static Color cupertinoBlueColor = const Color(0xff0094ff);
   static Color hintColor = const Color(0xFF808080);
 
-  static const Color textColor = Color(0xff000103);
+  static const Color textColor = Color(0xffffffff);
   static const Color textTitleColor = Color(0xff1A1A1A);
   static const Color textGreyColor = Color(0xff7c7c7c);
   static const Color borderColor = Color(0xffe0e0df);

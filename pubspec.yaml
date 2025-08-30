@@ -84,7 +84,7 @@ dependencies:
   cropperx: ^1.1.1
   package_info_plus: ^8.1.1
   google_places_autocomplete_text_field: ^1.0.0
-
+  lottie: ^3.3.1
   #  expandable: ^5.0.1
   #  uuid: ^3.0.7
   #  readmore: ^2.2.0
@@ -130,6 +130,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/
+    - assets/loaders/
 
   fonts:
     - family: Montserrat
