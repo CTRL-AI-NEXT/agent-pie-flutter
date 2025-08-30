@@ -1,9 +1,11 @@
 import 'package:agent_pie/features/bottom_nav/bottom_nav_screen.dart';
+import 'package:agent_pie/features/manager/bottom_nav/manager_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreenController extends GetxController {
   final formKey = GlobalKey<FormState>();
+  final RxString selectedLoginMode = "user".obs;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -27,7 +29,11 @@ class LoginScreenController extends GetxController {
   void login() {
     if (formKey.currentState!.validate()) {
       // Perform login logic here
-      Get.offAll(() => const BottomNavScreen());
+      if (selectedLoginMode.value == "user") {
+        Get.offAll(() => const BottomNavScreen());
+      }else {
+        Get.offAll(() => const ManagerBottomNavScreen());
+      }
     }
   }
 

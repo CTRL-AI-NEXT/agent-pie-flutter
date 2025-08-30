@@ -50,4 +50,15 @@ class AppImages {
       "assets/images/ic_actions_unfilled.png";
   static const String icProfileFilled = "assets/images/ic_profile_filled.png";
   static const String icProfileUnfilled = "assets/images/ic_profile_unfilled.png";
+
+
+  //<-------- Manager --------->
+
+  // Bottom Nav
+  static const String icDashboard = "assets/images/ic_dashboard.png";
+  static const String icDashboardFilled = "assets/images/ic_dashboard_filled.png";
+  static const String icUpload = "assets/images/ic_upload.png";
+  static const String icUploadFilled = "assets/images/ic_upload_filled.png";
+  static const String fileUploadLottie = "assets/loaders/file_upload.json";
+
 }

@@ -361,7 +361,7 @@ class APIHelper {
 
   Future<NetworkResult> callPostMultiPart(
       String path, dynamic params, bool isLoader, String uploadFilePath,
-      {String dataPathName = "data", String imagePathName = "image"}) async {
+      {String dataPathName = "data", String imagePathName = "image", Function(int, int)? onSendProgress}) async {
     var callingURL = "${Environment.config.apiHost}/$path";
     /*  if (_notProperHeader())*/
 
@@ -397,7 +397,8 @@ class APIHelper {
         var responseString = await dio.post(callingURL,
             data: formData,
             options:
-            Options(headers: _headers, contentType: "application/json"));
+            Options(headers: _headers, contentType: "application/json"),
+            onSendProgress: onSendProgress);
 
         if (_isDebug) timber("API Response -> $responseString");
 

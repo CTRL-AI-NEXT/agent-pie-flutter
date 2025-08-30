@@ -22,13 +22,41 @@ class LoginScreen extends StatelessWidget {
                 padding: EdgeInsets.all(Dimensions.w16),
                 child: Column(
                   children: [
-                    SizedBox(height: Dimensions.h20,),
+                    SizedBox(
+                      height: Dimensions.h20,
+                    ),
                     CustomSvgAssetImage(image: AppImages.icAppIconFull),
                     SizedBox(
                         width: Get.width * 0.7,
                         height: Dimensions.h200,
                         child: Lottie.asset('assets/loaders/loader.json')),
-                    SizedBox(height: Dimensions.h60,),
+                    SizedBox(
+                      height: Dimensions.h60,
+                    ),
+                    Obx(
+                        () => CupertinoSlidingSegmentedControl<String>(
+                          padding: EdgeInsets.all(8),
+                          groupValue: controller.selectedLoginMode.value,
+                          children: {
+                            "user": Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Text("User"),
+                            ),
+                            "admin": Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Text("Admin"),
+                            ),
+                          },
+                          onValueChanged: (value) {
+                            if (value != null) {
+                              controller.selectedLoginMode.value = value;
+                            }
+                          },
+                        )
+
+                      ,
+                    ),
+                    SizedBox(height: Dimensions.h16,),
                     Form(
                       key: controller.formKey,
                       child: Column(
@@ -54,16 +82,21 @@ class LoginScreen extends StatelessWidget {
                               child: Icon(CupertinoIcons.lock),
                             ),
                           ),
-              
                           SizedBox(height: Dimensions.h8),
                           Align(
                               alignment: Alignment.centerRight,
                               child: InkWell(
-                                  onTap: (){},
-                                  borderRadius: BorderRadius.circular(Dimensions.r4),
+                                  onTap: () {},
+                                  borderRadius:
+                                      BorderRadius.circular(Dimensions.r4),
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: Dimensions.w4),
-                                    child: Text(AppString.forgotPassword, style: fontStyleRegular12.apply(decoration: TextDecoration.underline),),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: Dimensions.w4),
+                                    child: Text(
+                                      AppString.forgotPassword,
+                                      style: fontStyleRegular12.apply(
+                                          decoration: TextDecoration.underline),
+                                    ),
                                   ))),
                           SizedBox(height: Dimensions.h16),
                           MyButton(
