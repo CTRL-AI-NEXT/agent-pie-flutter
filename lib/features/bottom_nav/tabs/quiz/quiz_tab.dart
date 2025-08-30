@@ -1,7 +1,9 @@
 import 'package:agent_pie/core/basic_features.dart';
+import 'package:agent_pie/core/utils/enum.dart';
 import 'package:agent_pie/core/widgets/custom_appbar.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/quiz/controller/quiz_controller.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/quiz/widgets/quiz_question_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -15,6 +17,11 @@ class QuizTab extends StatelessWidget {
       builder: (controller) => Scaffold(
         appBar: bottomNavTabAppBar(),
         body: Obx(() {
+          if (controller.resultQuizResponse.value.apiResultType ==
+              APIResultType.loading) {
+            return const Center(child: CupertinoActivityIndicator());
+          }
+
           if (controller.isQuizCompleted.value) {
             return Center(
               child: Column(
@@ -38,11 +45,8 @@ class QuizTab extends StatelessWidget {
                   )
                 ],
               ), // Slightly longer fade duration for a smoother appearance
-            )
-                .animate()
-                .fade(duration: 800.ms, curve: Curves.easeInOut)
-                .scale(
-                    delay: 200.ms, duration: 600.ms, curve: Curves.elasticOut);
+            ).animate().fade(duration: 800.ms, curve: Curves.easeInOut).scale(
+                delay: 200.ms, duration: 600.ms, curve: Curves.elasticOut);
           }
 
           if (controller.quiz.value == null) {
@@ -56,7 +60,8 @@ class QuizTab extends StatelessWidget {
                   controller: controller.pageController,
                   onPageChanged: controller.onPageChanged,
                   itemCount: controller.quiz.value!.questions.length,
-                  physics: const NeverScrollableScrollPhysics(), // Disable manual swipe
+                  physics: const NeverScrollableScrollPhysics(),
+                  // Disable manual swipe
                   itemBuilder: (context, index) {
                     return QuizQuestionCard(
                       question: controller.quiz.value!.questions[index],

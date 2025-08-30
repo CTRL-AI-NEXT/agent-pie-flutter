@@ -8,32 +8,31 @@ class ChatEmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(
-      children: [
-        const Spacer(),
+    return Column(
+          children: [
+    const Spacer(),
 
-        // Bulb Icon
-        CustomSvgAssetImage(
-            image: AppImages.icQuizFilled),
+    // Bulb Icon
+    const CustomSvgAssetImage(
+        image: AppImages.icQuizFilled),
 
-        // Title
-        Text(
-          AppString.itsQuietHere.tr,
-          style: fontStyleBold18.apply(color: Get.theme.colorScheme.textColor),
-          textAlign: TextAlign.center,
-        ),
+    // Title
+    Text(
+      AppString.itsQuietHere.tr,
+      style: fontStyleBold18.apply(color: Get.theme.colorScheme.textColor),
+      textAlign: TextAlign.center,
+    ),
 
-        // Subtitle
-        Text(
-          AppString.sayHiToBeginChatting.tr,
-          style:
-              fontStyleRegular12.apply(color: Get.theme.colorScheme.textColor),
-          textAlign: TextAlign.center,
-        ),
+    // Subtitle
+    Text(
+      AppString.sayHiToBeginChatting.tr,
+      style:
+          fontStyleRegular12.apply(color: Get.theme.colorScheme.textColor),
+      textAlign: TextAlign.center,
+    ),
 
-        const Spacer(),
-      ],
-    ));
+    const Spacer(),
+          ],
+        );
   }
 }

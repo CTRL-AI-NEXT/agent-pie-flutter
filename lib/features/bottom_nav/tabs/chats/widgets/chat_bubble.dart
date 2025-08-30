@@ -16,10 +16,11 @@ class ChatQueryAndResponseTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      key: ValueKey(chatItem.id),
+      key: ValueKey(chatItem.answer),
       children: [
         // Date Label
-        if (_shouldShowDateLabel()) _DateLabel(date: chatItem.createdAt),
+        if (_shouldShowDateLabel())
+          _DateLabel(date: chatItem.createdAt ?? DateTime.now()),
 
         // Query
         ChatBubble(
@@ -28,7 +29,7 @@ class ChatQueryAndResponseTile extends StatelessWidget {
         ),
 
         // Response
-        chatItem.message.isNullOrEmpty()
+        chatItem.answer.isNullOrEmpty()
             ? const SizedBox()
             : ChatBubble(
                 isUserQuery: false,
@@ -123,7 +124,7 @@ class ChatBubble extends StatelessWidget {
               // Message Text
               Text.rich(
                 AppUtils.aIFormattedText(
-                  isUserQuery ? chatItem.query : chatItem.message,
+                  isUserQuery ? chatItem.question ?? '' : chatItem.answer ?? '',
                 ),
                 textAlign: TextAlign.start,
                 style: fontStyleRegular13.copyWith(
@@ -134,7 +135,7 @@ class ChatBubble extends StatelessWidget {
               ),
 
               // Reference Text
-              if (chatItem.reference.isNotNullOrEmpty() && !isUserQuery)
+              if (chatItem.sopTitle.isNotNullOrEmpty() && !isUserQuery)
                 Padding(
                   padding: EdgeInsets.only(top: Dimensions.h10),
                   child: Container(
@@ -157,7 +158,7 @@ class ChatBubble extends StatelessWidget {
                         SizedBox(width: Dimensions.w5),
                         Flexible(
                           child: Text(
-                            chatItem.reference,
+                            chatItem.sopTitle ?? '',
                             style: fontStyleRegular12.copyWith(
                               fontSize: Dimensions.sp10,
                               color: AppColors.whiteColor,

@@ -333,61 +333,63 @@ class CustomAppBar extends AppBar {
         );
 }
 
-PreferredSizeWidget bottomNavTabAppBar() {
-  final controller = Get.find<BottomNavController>();
+PreferredSizeWidget bottomNavTabAppBar([bool showSop = true]) {
+  final controller = showSop ? Get.find<BottomNavController>() : null;
   return AppBar(
     title: CustomSvgAssetImage(
       image: AppImages.icAppIconFull,
       height: Dimensions.h32,
     ),
-    actions: [
-      Obx(
-        () => Padding(
-          padding: EdgeInsets.only(right: Dimensions.w10),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.w10,
-              vertical: Dimensions.h4,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.primaryColor.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(Dimensions.r10),
-            ),
-            child: InkWell(
-              onTap:  () {
-                CustomBottomSheet.instance.modalBottomSheet(
-                  context: Get.context!,
-                  child: SOPBottomSheetView(
-                    controller: controller,
+    actions: !showSop
+        ? []
+        : [
+            Obx(
+              () => Padding(
+                padding: EdgeInsets.only(right: Dimensions.w10),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.w10,
+                    vertical: Dimensions.h4,
                   ),
-                );
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: Text(
-                      controller.selectedSopTitle.value,
-                      style: fontStyleRegular12.copyWith(
-                        fontSize: Dimensions.sp10,
-                        color: AppColors.whiteColor,
-                      ),
-                      overflow: TextOverflow.ellipsis,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(Dimensions.r10),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      CustomBottomSheet.instance.modalBottomSheet(
+                        context: Get.context!,
+                        child: SOPBottomSheetView(
+                          controller: controller!,
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            controller!.selectedSopTitle.value,
+                            style: fontStyleRegular12.copyWith(
+                              fontSize: Dimensions.sp10,
+                              color: AppColors.whiteColor,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(width: Dimensions.w5),
+                        CustomSvgAssetImage(
+                          image: AppImages.icArrowDown,
+                          width: Dimensions.w12,
+                          height: Dimensions.w12,
+                          color: AppColors.whiteColor,
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(width: Dimensions.w5),
-                  CustomSvgAssetImage(
-                    image: AppImages.icArrowDown,
-                    width: Dimensions.w12,
-                    height: Dimensions.w12,
-                    color: AppColors.whiteColor,
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-    ],
+          ],
   );
 }

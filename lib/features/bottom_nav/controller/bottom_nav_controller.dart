@@ -1,4 +1,6 @@
 import 'package:agent_pie/core/basic_features.dart';
+import 'package:agent_pie/core/storage/preference_storage.dart';
+import 'package:agent_pie/features/auth/login_screen.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/actions/actions_tab.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/chats/chats_tab.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/quiz/quiz_tab.dart';
@@ -55,8 +57,24 @@ class BottomNavController extends GetxController {
     'SOP 005 v1',
   ].obs;
 
+  void onDestinationSelected(int index) {
+    selectedIndex.value = index;
 
-  void onDestinationSelected(int index) => selectedIndex.value = index;
+    if (index == 3) {
+      _signOut();
+    }
+  }
+
+  void onLongTap(int index) {
+    if (index == 3) {
+      _signOut();
+    }
+  }
+
+  Future<void> _signOut() async {
+    await PreferenceStorage.clearStorage();
+    Get.offAll(const LoginScreen());
+  }
 
   void onPopInvokedWithResult(bool didPop, dynamic _) {
     if (!didPop) {
