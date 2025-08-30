@@ -74,6 +74,16 @@ class BottomNavController extends GetxController {
   Future<void> _signOut() async {
     await PreferenceStorage.clearStorage();
     Get.offAll(const LoginScreen());
+
+
+    // Show the snackbar after a short delay to ensure navigation is complete.
+    Future.delayed(
+      const Duration(milliseconds: 500), // Adjust delay as needed
+          () => AppUtils.showSnackBar(
+        isSuccess: true,
+        message: AppString.loggedOutSuccessfully.tr,
+      ),
+    );
   }
 
   void onPopInvokedWithResult(bool didPop, dynamic _) {
