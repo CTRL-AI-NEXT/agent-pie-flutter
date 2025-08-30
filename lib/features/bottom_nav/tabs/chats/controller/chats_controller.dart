@@ -77,6 +77,7 @@ class ChatsController extends GetxController {
   }
 
   void onMessageSend() {
+
     if (chatTextEditingController.text.isEmpty) return;
     AppUtils.closeKeyboard();
 
