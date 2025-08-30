@@ -30,6 +30,11 @@ class AppString {
   static const String login = "Login";
   static const String forgotPassword = "Forgot Password";
 
+  // Upload Screen
+  static const String uploadSop = "Upload your SOP";
+  static const String uploadSopText = "Upload your SOP in PDF file format";
+  static const String tapToUploadSOP = "Tap to upload SOP";
+
   // PERMISSION HANDLE DIALOG
   static const String permissionCancel = "Cancel";
   static const String permissionSetting = "Settings";
@@ -80,6 +85,8 @@ class AppString {
   static const String quiz = "Quiz";
   static const String actions = "Actions";
   static const String profile = "Profile";
+  static const String dashboard = "Dashboard";
+  static const String upload = "Upload";
 
   // Preference Storage Keys
   static const String currentBuildModeKey = "currentBuildModeKey";

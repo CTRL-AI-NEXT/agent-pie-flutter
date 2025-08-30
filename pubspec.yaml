@@ -71,6 +71,13 @@ dependencies:
   package_info_plus: ^8.1.1
   google_places_autocomplete_text_field: ^1.0.0
   lottie: ^3.3.1
+  dotted_border: ^3.1.0
+  #  expandable: ^5.0.1
+  #  uuid: ^3.0.7
+  #  readmore: ^2.2.0
+  #  path_provider: ^2.1.0
+  # flutter_app_version_checker: any
+
   #  flutter_launcher_icons: ^0.13.1
 
   visibility_detector: ^0.4.0+2
