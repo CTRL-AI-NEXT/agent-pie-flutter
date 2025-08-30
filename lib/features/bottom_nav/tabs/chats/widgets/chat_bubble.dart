@@ -1,3 +1,4 @@
+import 'package:agent_pie/core/helpers/date_helper.dart';
 import 'package:agent_pie/core/model/ui_model/chat_message_response_model.dart';
 import 'package:agent_pie/core/utils/extension.dart';
 import 'package:agent_pie/core/widgets/custom_image.dart';
@@ -176,7 +177,8 @@ class ChatBubble extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: Dimensions.h5),
                   child: Text(
-                    AppUtils.formatDateTimeToDayMonthYear(chatItem.createdAt),
+                    DateHelper.formatNullableDateTimeToHHmma(
+                        chatItem.createdAt),
                     style: fontStyleMedium10.copyWith(
                       color: isUserQuery
                           ? AppColors.whiteColor.withValues(alpha: 0.8)

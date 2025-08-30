@@ -1,5 +1,7 @@
 import 'package:agent_pie/core/basic_features.dart';
 import 'package:agent_pie/core/utils/shimmer_screen.dart';
+import 'package:agent_pie/core/widgets/custom_appbar.dart';
+import 'package:agent_pie/core/widgets/custom_bottom_sheet.dart';
 import 'package:agent_pie/core/widgets/custom_image.dart';
 import 'package:agent_pie/core/widgets/text_field/text_field/search_bar_text_field.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/chats/widgets/chat_bubble.dart';
@@ -17,11 +19,33 @@ class ChatsTab extends StatelessWidget {
     return GetBuilder<ChatsController>(
       init: ChatsController(),
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          title: CustomSvgAssetImage(
-            image: AppImages.icAppIconFull,
-            height: Dimensions.h32,
-          ),
+        appBar: defaultAppbar(
+          context: context,
+          onPressed: () {
+            CustomBottomSheet.instance.modalBottomSheet(
+              context: context,
+              child: Obx(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.sopTitles.length,
+                  itemBuilder: (context, index) {
+                    final sopTitle = controller.sopTitles[index];
+                    return CheckboxListTile(
+                      title: Text(sopTitle),
+                      value: controller.selectedSopTitle.value == sopTitle,
+                      onChanged: (value) {
+                        if (value == true) {
+                          controller.selectedSopTitle.value = sopTitle;
+                          Navigator.pop(context);
+                        }
+                      },
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+          selectedSopTitle: controller.selectedSopTitle,
         ),
         resizeToAvoidBottomInset: true,
         body: Obx(
@@ -62,50 +86,55 @@ class ChatsTab extends StatelessWidget {
                     :
                     // Empty Chat or Loading View
                     // Note: The loading state should be handled here to prevent the list from building when empty.
-                    (false)
+                    controller.isLoading.value
                         ? const ShimmerChattingScreen()
                         : const ChatEmptyView(),
               ),
 
               // Send Message Bar
-              Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: Dimensions.w20).copyWith(
-                  bottom: MediaQuery.viewInsetsOf(context).bottom > 0
-                      ? MediaQuery.viewInsetsOf(context).bottom
-                      : Dimensions.h100,
-                ),
-                child: SendMessageTextField(
-                  height: Dimensions.h38,
-                  minLines: 1,
-                  maxLines: 3,
-                  isReadOnly: controller.isSendingMessage.value,
-                  bgColor: Theme.of(context).colorScheme.textFieldColor,
-                  textController: controller.chatTextEditingController,
-                  topLeftRadius: Dimensions.r15,
-                  topRightRadius: Dimensions.r15,
-                  bottomLeftRadius: Dimensions.r15,
-                  bottomRightRadius: Dimensions.r15,
-                  onChanged: (value) =>
-                      controller.showSendIcon.value = value.isNotEmpty,
-                  afterClearButton: () {},
-                  prefixIcon: const SizedBox(),
-                  hintText: AppString.askMeAnything.tr,
-                  hintTextColor: Theme.of(context).colorScheme.hintTextColor,
-                  onFieldSubmit: (_) => controller.onMessageSend(),
-                  suffixIcon: controller.isSendingMessage.value
-                      ? const CupertinoActivityIndicator()
-                      : IconButton(
-                          onPressed: () {},
-                          icon: CustomAssetImage(
-                            onTap: controller.onMessageSend,
-                            image: controller.showSendIcon.value
-                                ? AppImages.isSend
-                                : AppImages.isSend,
-                            height: Dimensions.w18,
-                            width: Dimensions.w18,
+              Obx(
+                () => Padding(
+                  padding: EdgeInsets.only(
+                    left: Dimensions.w20,
+                    right: Dimensions.w20,
+                    bottom: controller.isKeyboardVisible.value
+                        ? MediaQuery.of(context).viewInsets.bottom +
+                            Dimensions.h10
+                        : Dimensions.h100,
+                  ),
+                  child: SendMessageTextField(
+                    height: Dimensions.h38,
+                    minLines: 1,
+                    maxLines: 3,
+                    isReadOnly: controller.isSendingMessage.value,
+                    bgColor: Theme.of(context).colorScheme.textFieldColor,
+                    textController: controller.chatTextEditingController,
+                    topLeftRadius: Dimensions.r15,
+                    topRightRadius: Dimensions.r15,
+                    bottomLeftRadius: Dimensions.r15,
+                    focusNode: controller.focusNode,
+                    bottomRightRadius: Dimensions.r15,
+                    onChanged: (value) =>
+                        controller.showSendIcon.value = value.isNotEmpty,
+                    afterClearButton: () {},
+                    prefixIcon: const SizedBox(),
+                    hintText: AppString.askMeAnything.tr,
+                    hintTextColor: Theme.of(context).colorScheme.hintTextColor,
+                    onFieldSubmit: (_) => controller.onMessageSend(),
+                    suffixIcon: controller.isSendingMessage.value
+                        ? const CupertinoActivityIndicator()
+                        : IconButton(
+                            onPressed: () {},
+                            icon: CustomAssetImage(
+                              onTap: controller.onMessageSend,
+                              image: controller.showSendIcon.value
+                                  ? AppImages.isSend
+                                  : AppImages.isSend,
+                              height: Dimensions.w18,
+                              width: Dimensions.w18,
+                            ),
                           ),
-                        ),
+                  ),
                 ),
               )
             ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../basic_features.dart';
-import 'network_image.dart';
+import 'custom_image.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar.drawerNotificationAppBar({
@@ -328,4 +328,31 @@ class CustomAppBar extends AppBar {
             ),
           ),
         );
+}
+
+PreferredSizeWidget defaultAppbar({
+  required BuildContext context,
+  required RxString selectedSopTitle,
+  required VoidCallback onPressed,
+}) {
+  return AppBar(
+    title: CustomSvgAssetImage(
+      image: AppImages.icAppIconFull,
+      height: Dimensions.h32,
+    ),
+    actions: [
+      Obx(
+        () => TextButton(
+          onPressed: onPressed,
+          child: Text(
+            selectedSopTitle.value,
+            style: AppTextStyles.montserrat(
+              fontSize: Dimensions.sp14,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
 }
