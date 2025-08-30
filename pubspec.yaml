@@ -1,0 +1,188 @@
+name: agent_pie
+description:  The Food & Beverage DocBot
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  # Flutter SDK
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+  # Utils
+  device_info_plus: ^10.1.2
+  intl: ^0.19.0
+  flutter_screenutil: ^5.8.4
+  flutter_easyloading: ^3.0.5
+  logger: ^2.0.1
+  path_provider: ^2.0.14
+  crypto: ^3.0.3
+
+  # Network
+  connectivity_plus: ^6.1.0
+  cached_network_image: ^3.2.3
+  http: ^1.2.0
+  dio: ^5.3.2
+  socket_io_client: ^3.0.2
+
+  # Navigation & Notification
+  url_launcher: ^6.1.12
+  flutter_local_notifications: ^18.0.1
+  open_store: ^0.5.0
+  webview_flutter: ^4.2.4
+
+  # Media (Image, Permission, Video)
+  permission_handler: ^11.0.0
+  flutter_svg: ^2.0.9
+  image_picker: ^1.0.2
+  file_picker: ^8.0.0+1
+  flutter_image_compress: ^2.0.4
+#  video_player: ^2.7.2
+  #  cached_video_player_plus: ^2.0.0
+  readmore: ^3.0.0
+  syncfusion_flutter_pdfviewer: any
+  flutter_cache_manager: ^3.3.1
+
+
+  # Firebase
+  #  firebase_messaging: ^15.1.0
+  #  firebase_core: ^3.4.0
+  country_code_picker: ^3.0.0
+  #  firebase_crashlytics: ^4.1.0
+
+  # State Management
+  get: ^4.6.6
+  get_storage: ^2.1.1
+  flutter_secure_storage: ^9.2.4
+
+  # Additional UI Elements (Toast, Popup, Addition Display)
+  fluttertoast: ^8.2.12
+  date_field: ^6.0.0
+  #  custom_pop_up_menu: ^1.2.4
+  #  flutter_reaction_button: ^3.0.0+2
+  #  emoji_picker_flutter: ^2.2.0
+
+
+  # Location
+  geolocator: ^13.0.2
+
+  # Other UI Elements
+  #  azlistview: ^2.0.0
+  flutter_animate: ^4.2.0+1
+  timeago: ^3.6.0
+  #  video_thumbnail: ^0.5.3
+
+  # Amplify AWS
+  #  amplify_flutter: ^2.5.0
+  #  amplify_auth_cognito: ^2.5.0
+  #  amplify_storage_s3: ^2.5.0
+  chewie: ^1.7.4
+  cropperx: ^1.1.1
+  package_info_plus: ^8.1.1
+  google_places_autocomplete_text_field: ^1.0.0
+
+  #  expandable: ^5.0.1
+  #  uuid: ^3.0.7
+  #  readmore: ^2.2.0
+  #  path_provider: ^2.1.0
+  # flutter_app_version_checker: any
+
+  #  flutter_launcher_icons: ^0.13.1
+  #  flutter_native_splash: ^2.3.7
+  #  share_plus: ^10.0.0
+  # pin_input_text_field: ^4.5.2
+
+  visibility_detector: ^0.4.0+2
+
+
+  uuid: ^4.5.1
+  #  amplify_core: ^1.7.0
+  #  aws_common: ^0.6.3
+#  mobile_device_identifier: ^0.0.2
+
+#  open_mail_app:
+#    path: ./custom_packages/open_mail_app-0.4.5/
+
+
+
+
+
+
+  #  amplify_core: any
+  #  aws_common: any
+  #  collection: any
+  collection: any
+  jwt_decoder: ^2.0.1
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
+
+
+flutter_launcher_icons:
+  ios: false
+  android: true
+  image_path: "assets/images/app_icon.png"
+  remove_alpha_ios: true
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/images/app_icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+
+flutter_native_splash:
+  color: "#000000"
+  #background_image: "assets/background.png"
+  image: assets/images/splash_icon.png
+  android: true
+  ios: true
+  color_dark: "#000000"
+  #background_image_dark: "assets/dark-background.png"
+  image_dark: assets/images/splash_icon.png
+  #branding_dark: assets/dart_dark.png
+  # Android 12 handles the splash screen differently than previous versions.  Please visit
+  # https://developer.android.com/guide/topics/ui/splash-screen
+  # Following are Android 12 specific parameter.
+  android_12:
+    image: assets/images/splash_icon.png
+
+    # Splash screen background color.
+    color: "#000000"
+
+    # App icon background color.
+    #icon_background_color: "#111111"
+
+    # The branding property allows you to specify an image used as branding in the splash screen.
+    #branding: assets/dart.png
+
+    # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
+    # apply when the device is in dark mode. If they are not specified, the app will use the
+    # parameters from above.
+    image_dark: assets/images/splash_icon.png
+    color_dark: "#000000"
+    #icon_background_color_dark: "#eeeeee"
+  fullscreen: true
