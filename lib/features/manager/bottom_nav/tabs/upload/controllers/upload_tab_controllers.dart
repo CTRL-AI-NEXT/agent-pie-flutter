@@ -1,5 +1,6 @@
 import 'package:agent_pie/core/network/api_helper.dart';
 import 'package:agent_pie/core/network/network_constant.dart';
+import 'package:agent_pie/core/utils/logger_util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class UploadTabController extends GetxController with GetSingleTickerProviderSta
           onSendProgress: (sent, total) {
             if (total != -1) {
               uploadProgress.value = sent / total;
-              print('Upload progress: ${(uploadProgress.value * 100).toStringAsFixed(0)}%');
+              logger.i('Upload progress: ${(uploadProgress.value * 100).toStringAsFixed(0)}%');
             }
           },
         );

@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as network;
-
+import 'package:http_parser/http_parser.dart';
 import '../environment_setup/environment.dart';
 import '../storage/cache_manager.dart';
 import '../storage/preference_storage.dart';
@@ -570,16 +569,18 @@ class APIHelper {
       await _createHeadersForMultipart();
 
       try {
-        final formData = FormData.fromMap({
-          'file': await MultipartFile.fromFile(filePath),
+        FormData formData = FormData.fromMap({
+          "file": await MultipartFile.fromFile(
+            filePath,
+            filename: 'my_document.pdf', // Optional: specify a custom filename
+            contentType: MediaType('application', 'pdf'), // Important: set the correct content type
+          ),
         });
 
         var dio = Dio();
         var responseString = await dio.post(
           callingURL,
           data: formData,
-          options: Options(headers: _headers),
-          // Let Dio set the multipart content type
           onSendProgress: onSendProgress,
         );
 
