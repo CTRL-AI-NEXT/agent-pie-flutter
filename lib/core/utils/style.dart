@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../basic_features.dart';
 
+class AppTextStyles {
+  static TextStyle montserrat({
+    double? fontSize,
+    Color? color,
+    FontWeight? fontWeight,
+  }) {
+    return TextStyle(
+      fontFamily: 'Montserrat',
+      fontSize: fontSize,
+      color: color,
+      fontWeight: fontWeight,
+    );
+  }
+}
+
 // Light
 TextStyle fontStyleLight13 = TextStyle(
     fontSize: Dimensions.sp13,

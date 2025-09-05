@@ -14,14 +14,13 @@ class CustomBottomSheet {
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.r10),
-                topRight: Radius.circular(Dimensions.r10))),
+                topLeft: Radius.circular(Dimensions.commonRadius),
+                topRight: Radius.circular(Dimensions.commonRadius))),
         isScrollControlled: true,
 
         // clipBehavior: Clip.antiAliasWithSaveLayer,
         context: context,
-        builder: (context) {
-          return Wrap(
+        builder: (context) => Wrap(
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
@@ -32,7 +31,7 @@ class CustomBottomSheet {
                       Navigator.pop(context);
                     },
                     child: CircleAvatar(
-                      backgroundColor: AppColors.whiteColor,
+                      backgroundColor: AppColors.backgroundColor,
                       radius: Dimensions.r22,
                       child: Icon(
                         Icons.close_rounded,
@@ -46,7 +45,7 @@ class CustomBottomSheet {
                   Container(
                     width: Dimensions.screenWidth(),
                     decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
+                        color: AppColors.backgroundColor,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(Dimensions.r10),
                             topRight: Radius.circular(Dimensions.r10))),
@@ -67,8 +66,7 @@ class CustomBottomSheet {
                 ],
               ),
             ],
-          );
-        });
+          ));
   }
 
   dashBottomSheet(
@@ -92,7 +90,7 @@ class CustomBottomSheet {
               Container(
                 width: Dimensions.screenWidth(),
                 decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
+                    color: AppColors.backgroundColor,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(Dimensions.r20),
                         topRight: Radius.circular(Dimensions.r20))),
@@ -190,7 +188,7 @@ class CustomBottomSheet {
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
+                    color: AppColors.backgroundColor,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(Dimensions.r20),
                         topRight: Radius.circular(Dimensions.r20))),

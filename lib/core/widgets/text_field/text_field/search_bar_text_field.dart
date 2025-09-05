@@ -1,21 +1,19 @@
+import 'package:agent_pie/core/utils/custom_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../basic_features.dart';
-import '../../custom_image.dart';
 import '../../custom_text_widget.dart';
 
-// import '../../core/utils/custom_text_style.dart';
-// import '../../core/tabs/custom_text_widget.dart';
-
-class SearchBarTextBoxField extends StatefulWidget {
+class SendMessageTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final double? height;
   final bool isRequiredField;
+  final int? minLines;
+  final int? maxLines;
   final bool? autoFocus;
   final Widget? suffixIcon;
-  final double? hintFontSize;
   final Widget? prefixIcon;
   final String? title;
   final String? headerText;
@@ -26,7 +24,10 @@ class SearchBarTextBoxField extends StatefulWidget {
   final TextInputType? inputType;
   final TextAlign? textAlign;
   final int? maxLine, maxLength;
-  final double? borderRadius;
+  final double? topLeftRadius,
+      topRightRadius,
+      bottomLeftRadius,
+      bottomRightRadius;
   final TextInputType? keyboardType;
   final bool? obscureText;
   final bool? isReadOnly;
@@ -39,7 +40,7 @@ class SearchBarTextBoxField extends StatefulWidget {
   final String? hintText;
   final Function? onTap;
 
-  const SearchBarTextBoxField(
+  const SendMessageTextField(
       {super.key,
       this.inputFormatters,
       this.height,
@@ -47,7 +48,10 @@ class SearchBarTextBoxField extends StatefulWidget {
       this.maxLine,
       this.textAlign = TextAlign.start,
       this.maxLength,
-      this.borderRadius,
+      this.topLeftRadius,
+      this.topRightRadius,
+      this.bottomLeftRadius,
+      this.bottomRightRadius,
       this.keyboardType,
       this.title,
       this.headerText,
@@ -69,13 +73,14 @@ class SearchBarTextBoxField extends StatefulWidget {
       this.isRequiredField = false,
       required this.afterClearButton,
       this.autoFocus,
-      this.hintFontSize});
+      this.minLines,
+      this.maxLines});
 
   @override
-  State<SearchBarTextBoxField> createState() => _SearchBarTextBoxFieldState();
+  State<SendMessageTextField> createState() => _SendMessageTextFieldState();
 }
 
-class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
+class _SendMessageTextFieldState extends State<SendMessageTextField> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -100,27 +105,30 @@ class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
                 )
               : const SizedBox(),
           Container(
-            height: widget.height ?? Dimensions.commonButtonHeight,
-            alignment: Alignment.center,
+            height: widget.height ?? Dimensions.h45,
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.w10),
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: AppColors.appNameBlackColor.withValues(alpha: 0.1),
-                    blurRadius: 25,
-                    spreadRadius: 0)
-              ],
-              borderRadius: BorderRadius.circular(
-                  widget.borderRadius ?? Dimensions.commonRadius),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(widget.topLeftRadius ?? 0.00),
+                topRight: Radius.circular(widget.topRightRadius ?? 0.00),
+                bottomLeft: Radius.circular(widget.bottomLeftRadius ?? 0.00),
+                bottomRight: Radius.circular(widget.bottomRightRadius ?? 0.00),
+              ),
               color: widget.bgColor ?? AppColors.textFieldColor,
             ),
             child: TextFormField(
                 enabled: !widget.isReadOnly!,
+                minLines: widget.minLines,
+                maxLines: widget.maxLines,
                 autofocus: widget.autoFocus ?? false,
                 obscureText: false,
                 focusNode: widget.focusNode,
                 textCapitalization: TextCapitalization.none,
                 textAlignVertical: TextAlignVertical.center,
-                style: fontStyleRegular17,
+                style: CustomTextStyle.instance.medium18.copyWith(
+                    color: Get.theme.colorScheme.textColor,
+                    fontSize: Dimensions.sp13,
+                    fontWeight: FontWeight.w400),
                 cursorColor: AppColors.primaryColor,
                 textAlign: widget.textAlign ?? TextAlign.start,
                 onFieldSubmitted: widget.onFieldSubmit,
@@ -130,22 +138,26 @@ class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
                     labelText: widget.showLabelText ? widget.hintText : null,
                     isDense: true,
                     prefixIconConstraints:
-                        BoxConstraints(minHeight: 0, minWidth: 0),
+                        BoxConstraints(minHeight: 0, minWidth: Dimensions.w6),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(
-                          widget.borderRadius ?? Dimensions.commonRadius),
+                      borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(
                         width: 0,
                         style: BorderStyle.none,
                       ),
                     ),
-                    labelStyle: fontStyleRegular15,
-                    fillColor: widget.bgColor ?? AppColors.textFieldColor,
-                    filled: true,
+                    labelStyle: CustomTextStyle.instance.medium18.copyWith(
+                        color: AppColors.blackColor,
+                        fontSize: Dimensions.sp15,
+                        fontWeight: FontWeight.w500),
+                    // fillColor: ColorCon,
+                    // filled: true,
                     hintText: widget.hintText ?? "",
-                    hintStyle: fontStyleRegular15.copyWith(
-                        color: AppColors.hintColor,
-                        fontSize: widget.hintFontSize),
+                    hintStyle: CustomTextStyle.instance.medium18.copyWith(
+                        color: widget.hintTextColor ?? AppColors.blackColor,
+                        fontSize: Dimensions.sp13,
+                        fontWeight: FontWeight.w400),
+                    contentPadding: EdgeInsets.only(right: Dimensions.w10),
                     prefixIcon: widget.prefixIcon ??
                         Padding(
                           padding: EdgeInsets.only(
@@ -160,8 +172,7 @@ class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
                           ),
                         ),
                     suffixIconConstraints: BoxConstraints(
-                        minHeight:
-                            widget.height ?? Dimensions.commonButtonHeight,
+                        minHeight: widget.height ?? Dimensions.h40,
                         minWidth: 0),
                     suffixIcon: GestureDetector(
                       onTap: () {
@@ -173,15 +184,15 @@ class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
                       child: widget.suffixIcon ??
                           Padding(
                             padding: EdgeInsets.only(
-                                right: Dimensions.w10,
+                                right: Dimensions.w5,
                                 left: Dimensions.w10,
                                 top: Dimensions.w10,
                                 bottom: Dimensions.w10),
                             child: widget.textController.text.isNotEmpty
-                                ? CustomSvgAssetImage(
-                                    image: AppImages.icCancel,
-                                    height: Dimensions.w20,
-                                    width: Dimensions.w20,
+                                ? Icon(
+                                    CupertinoIcons.clear_circled,
+                                    color: Get.theme.colorScheme.textColor,
+                                    size: Dimensions.w16,
                                   )
                                 : const SizedBox(),
                           ),
@@ -196,7 +207,7 @@ class _SearchBarTextBoxFieldState extends State<SearchBarTextBoxField> {
                 onTap: () {
                   widget.onTap?.call();
                 },
-                textInputAction: TextInputAction.search,
+                textInputAction: TextInputAction.send,
                 keyboardType: TextInputType.text),
           ),
         ],

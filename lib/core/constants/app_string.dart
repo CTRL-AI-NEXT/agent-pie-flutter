@@ -26,6 +26,15 @@ class AppString {
   static const String chooseFromGallery = "Choose from Gallery";
 
 
+  // Login Screen
+  static const String login = "Login";
+  static const String forgotPassword = "Forgot Password";
+
+  // Upload Screen
+  static const String uploadSop = "Upload your SOP";
+  static const String uploadSopText = "Upload your SOP in PDF file format";
+  static const String tapToUploadSOP = "Tap to upload SOP";
+
   // PERMISSION HANDLE DIALOG
   static const String permissionCancel = "Cancel";
   static const String permissionSetting = "Settings";
@@ -72,8 +81,25 @@ class AppString {
   static const String done = "Done";
 
   // Bottom Tab Navigation
-
+  static const String chats = "Chats";
+  static const String quiz = "Quiz";
+  static const String actions = "Actions";
+  static const String profile = "Profile";
+  static const String dashboard = "Dashboard";
+  static const String upload = "Upload";
 
   // Preference Storage Keys
   static const String currentBuildModeKey = "currentBuildModeKey";
+
+  static const String itsQuietHere = "It’s Quiet Here";
+  static const String askMeAnything =
+      "Ask me anything about our SOPs...";
+  static const String sayHiToBeginChatting = "Say hi to begin chatting";
+  static const String today = "Today";
+  static const String yesterday = "Yesterday";
+  static const String loginResponseModelKey = "loginResponseModelKey";
+
+  static var loggedInSuccessfully = "Logged in successfully";
+  static var loggedOutSuccessfully = "Logged out successfully";
+
 }

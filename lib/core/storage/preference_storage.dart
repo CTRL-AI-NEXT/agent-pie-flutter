@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:agent_pie/core/model/response_model/login_response_model.dart';
+import 'package:agent_pie/core/utils/logger_util.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -200,12 +202,13 @@ class PreferenceStorage {
   /// To Get Models
 
   // To Get Sign In Response Model
-  // static SignInResponseModel? getSignInResponseModel() {
-  //   String? data = _storage.read(AppString.signInResponseModelKey);
-  //   return (data == null || data.isEmpty)
-  //       ? null
-  //       : SignInResponseModel.fromJson(jsonDecode(data));
-  // }
+  static LoginResponseModel? getLoginResponseModel() {
+    String? data = _storage.read(AppString.loginResponseModelKey);
+    logger.i(data);
+    return (data == null || data.isEmpty)
+        ? null
+        : LoginResponseModel.fromJson(jsonDecode(data));
+  }
 
   static bool hasData(String key) => _storage.hasData(key);
 

@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_app_version_checker/flutter_app_version_checker.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 // import 'package:mobile_device_identifier/mobile_device_identifier.dart';
@@ -120,11 +119,12 @@ class AppUtils {
     exit(0);
   }
 
-  static showSnackBar(
-      {bool isSuccess = false,
-        String? title,
-        required String message,
-        int durationMilliSecond = 4000}) {
+  static showSnackBar({
+    bool isSuccess = false,
+    String? title,
+    required String message,
+    int durationMilliSecond = 4000,
+  }) {
     if (!Get.isSnackbarOpen) {
       Get.showSnackbar(
         GetSnackBar(
@@ -146,10 +146,14 @@ class AppUtils {
               Row(
                 children: [
                   // Action Icon
-                  CustomSvgAssetImage(
-                    image: AppImages.icCheckCircle,
-                    width: Dimensions.w30,
-                    height: Dimensions.w30,
+                  Icon(
+                    isSuccess
+                        ? Icons.check_circle_rounded
+                        : Icons.cancel_rounded,
+                    color: isSuccess
+                        ? AppColors.primaryColor // or your success color
+                        : Colors.red,
+                    size: Dimensions.w30,
                   ),
 
                   // Title Text
@@ -160,17 +164,16 @@ class AppUtils {
                           (isSuccess
                               ? AppString.snackBarPositiveTitle.tr
                               : AppString.snackBarNegativeTitle.tr),
-                      style: fontStyleMedium17.copyWith(
-                          color: AppColors.textColor),
+                      style: fontStyleMedium17.copyWith(color: AppColors.textColor),
                     ),
                   ),
                   Spacer(),
 
                   // Trailing Icon
-                  CustomSvgAssetImage(
-                    image: AppImages.icRightArrowCircle,
-                    width: Dimensions.w30,
-                    height: Dimensions.w30,
+                  Icon(
+                    Icons.arrow_circle_right, // A generic icon for trailing
+                    color: AppColors.primaryColor,
+                    size: Dimensions.w30,
                   ),
                 ],
               ),
@@ -180,8 +183,7 @@ class AppUtils {
                 padding: EdgeInsets.only(left: Dimensions.w40),
                 child: Text(
                   message,
-                  style:
-                  fontStyleLight15.copyWith(color: AppColors.textGreyColor),
+                  style: fontStyleLight15.copyWith(color: AppColors.textGreyColor),
                 ),
               )
             ],
@@ -191,14 +193,85 @@ class AppUtils {
     }
   }
 
-  static Future<void> validateAuthTokenExpiry() async {
-    final authAccessToken = await PreferenceStorage.getAuthAccessToken();
+// static showSnackBar(
+  //     {bool isSuccess = false,
+  //       String? title,
+  //       required String message,
+  //       int durationMilliSecond = 4000}) {
+  //   if (!Get.isSnackbarOpen) {
+  //     Get.showSnackbar(
+  //       GetSnackBar(
+  //         borderColor: AppColors.primaryColor,
+  //         borderWidth: 2,
+  //         barBlur: 80,
+  //         snackPosition: SnackPosition.TOP,
+  //         maxWidth: Get.width * 0.92,
+  //         borderRadius: Dimensions.r17,
+  //         forwardAnimationCurve: CustomAnimationCurves.snackBarEaseOutBack,
+  //         animationDuration: 800.milliseconds,
+  //         backgroundColor: AppColors.snackBarBackgroundColor,
+  //         duration: Duration(milliseconds: durationMilliSecond),
+  //         margin: EdgeInsets.symmetric(horizontal: Dimensions.w8),
+  //         messageText: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+  //             // Action Icon, Title, Trailing Icon
+  //             Row(
+  //               children: [
+  //                 // Action Icon
+  //                 // CustomSvgAssetImage(
+  //                 //   image: AppImages.icCheckCircle,
+  //                 //   width: Dimensions.w30,
+  //                 //   height: Dimensions.w30,
+  //                 // ),
+  //
+  //                 // Title Text
+  //                 Padding(
+  //                   padding: EdgeInsets.only(left: Dimensions.w10),
+  //                   child: Text(
+  //                     title ??
+  //                         (isSuccess
+  //                             ? AppString.snackBarPositiveTitle.tr
+  //                             : AppString.snackBarNegativeTitle.tr),
+  //                     style: fontStyleMedium17.copyWith(
+  //                         color: AppColors.textColor),
+  //                   ),
+  //                 ),
+  //                 Spacer(),
+  //
+  //                 // Trailing Icon
+  //                 CustomSvgAssetImage(
+  //                   image: AppImages.icRightArrowCircle,
+  //                   width: Dimensions.w30,
+  //                   height: Dimensions.w30,
+  //                 ),
+  //               ],
+  //             ),
+  //
+  //             // Message Text
+  //             Padding(
+  //               padding: EdgeInsets.only(left: Dimensions.w40),
+  //               child: Text(
+  //                 message,
+  //                 style:
+  //                 fontStyleLight15.copyWith(color: AppColors.textGreyColor),
+  //               ),
+  //             )
+  //           ],
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
 
-    if (authAccessToken != null && JwtDecoder.isExpired(authAccessToken)) {
-      // final signInController = Get.put(SignInController()); // Create instance
-      // await signInController.callRefreshToken(); // Call method
-      // Get.delete<SignInController>(); // Delete instance after execution
-    }
+  static Future<void> validateAuthTokenExpiry() async {
+    // final authAccessToken = await PreferenceStorage.getAuthAccessToken();
+    //
+    // if (authAccessToken != null && JwtDecoder.isExpired(authAccessToken)) {
+    //   // final signInController = Get.put(SignInController()); // Create instance
+    //   // await signInController.callRefreshToken(); // Call method
+    //   // Get.delete<SignInController>(); // Delete instance after execution
+    // }
   }
 
 
@@ -397,26 +470,6 @@ class AppUtils {
     }
   }
 
-  static Future<void> getCurrentLocation() async {
-    if (await AppUtils.haveLocationPermission()) {
-      EasyLoading.show();
-      /*final position =*/
-      await Geolocator.getCurrentPosition(
-        locationSettings: LocationSettings(
-          accuracy: LocationAccuracy.high,
-          // distanceFilter: 10,
-        ),
-      );
-
-      // double latitude = position.latitude;
-      // double longitude = position.longitude;
-
-      EasyLoading.dismiss();
-      // AppUtils.showSnackBar(
-      //     message: "Latitude: $latitude, Longitude: $longitude",
-      //     isSuccess: true);
-    }
-  }
 
   static RegExp amountRegExp = RegExp(r'([.]*0)(?!.*\d)');
 
@@ -593,6 +646,39 @@ class AppUtils {
 
   static DateTime? backButtonPressedTime;
 
+  static TextSpan aIFormattedText(String input) {
+    TextSpan formattedSpans(String input) {
+      final List<TextSpan> spans = [];
+      final RegExp regex = RegExp(r'\*\*(.*?)\*\*');
+      int lastMatchEnd = 0;
+
+      for (final match in regex.allMatches(input)) {
+        if (match.start > lastMatchEnd) {
+          spans.add(TextSpan(
+            text: input.substring(lastMatchEnd, match.start),
+            style: TextStyle(fontWeight: FontWeight.normal),
+          ));
+        }
+        spans.add(TextSpan(
+          text: match.group(1),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ));
+        lastMatchEnd = match.end;
+      }
+
+      if (lastMatchEnd < input.length) {
+        spans.add(TextSpan(
+          text: input.substring(lastMatchEnd),
+          style: TextStyle(fontWeight: FontWeight.normal),
+        ));
+      }
+
+      return TextSpan(children: spans);
+    }
+    return formattedSpans(input);
+  }
+
+
   // For Pop Scope
   static showExitPopScopePopup() {
     DateTime currentTime = DateTime.now();
@@ -671,6 +757,8 @@ class AppUtils {
   static String getInitials(String name) => name.isNotEmpty
       ? name.trim().split(' ').map((l) => l[0]).take(2).join().toUpperCase()
       : '';
+
+
 
 
 }

@@ -20,6 +20,10 @@ class Dimensions {
   // final GlobalKey<MediaQuery> navigatorKey =
   // GlobalKey<MediaQuery>();
 
+  static EdgeInsets commonHorizontalEdgeInsets =
+  EdgeInsets.symmetric(horizontal: commonPaddingForScreen);
+
+
   static double commonPaddingForScreen = Dimensions.w20;
   static double commonRadius = Dimensions.r13;
   static double commonButtonHeight = Dimensions.h44;

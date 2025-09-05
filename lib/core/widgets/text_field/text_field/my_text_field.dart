@@ -32,6 +32,7 @@ class MyTextField extends StatelessWidget {
   final Color? textFieldBorderColor;
   final double? iconBottomPadding;
   final EdgeInsets? padding;
+  final FormFieldValidator<String?>? validator;
 
   const MyTextField(
       {super.key,
@@ -63,7 +64,9 @@ class MyTextField extends StatelessWidget {
       this.textFieldBorderColor,
       this.iconBottomPadding,
       this.padding,
-      this.onFieldSubmitted});
+      this.onFieldSubmitted,
+      this.validator,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +105,7 @@ class MyTextField extends StatelessWidget {
                   const BoxConstraints(minHeight: 0, minWidth: 0),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  borderRadius ?? Dimensions.r12,
+                  borderRadius ?? Dimensions.r25,
                 ),
                 borderSide: BorderSide(
                   width: Dimensions.w2,
@@ -111,7 +114,7 @@ class MyTextField extends StatelessWidget {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  borderRadius ?? Dimensions.r12,
+                  borderRadius ?? Dimensions.r25,
                 ),
                 borderSide: const BorderSide(
                   width: 0,
@@ -137,6 +140,7 @@ class MyTextField extends StatelessWidget {
               ),
               // )),
             ),
+            // validator: validator,
             onChanged: onChanged,
             onSaved: (value) {},
             onTap: () {},

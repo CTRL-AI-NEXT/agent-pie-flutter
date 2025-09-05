@@ -119,7 +119,7 @@ class MyButton extends StatelessWidget {
         backgroundColor: btnBgColor ?? AppColors.primaryColor,
         disabledBackgroundColor: AppColors.greyColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(cornerRadius ?? Dimensions.r12),
+          borderRadius: BorderRadius.circular(cornerRadius ?? Dimensions.r25),
         ),
       ),
       onPressed: onPressed,
@@ -128,7 +128,7 @@ class MyButton extends StatelessWidget {
             Text(title!,
                 textAlign: TextAlign.center,
                 style: textStyle ??
-                    fontStyleMedium17.copyWith(color: Colors.white)),
+                    fontStyleRegular14.copyWith(color: Colors.white)),
       ),
     );
   }

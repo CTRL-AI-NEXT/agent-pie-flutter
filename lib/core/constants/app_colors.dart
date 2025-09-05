@@ -4,17 +4,18 @@ class AppColors {
   static Color shimmerBaseColor = Colors.grey.shade200;
   static Color shimmerHighLightColor = Colors.grey.shade400;
 
-  static const Color primaryColor = Color(0xff1CBA6F);
-  static const Color primaryLightColor = Color(0xff95FDCB);
-  static Color snackBarBackgroundColor = Color(0xff80f8bf);
+  static const Color primaryColor = Color(0xffFFCC91);
+  static const Color primaryDarkColor = Color(0xffd29965);
+  static const Color primaryLightColor = Color(0xffffdeb6);
+  static Color snackBarBackgroundColor = Color(0xffffdeb6);
   static Color snackBarBorderColor = Color(0xff1CBA6F);
   static const Color greyColor = Color(0xffCBCBCB);
   static const Color blackColor = Color(0xff000000);
   static const Color darkSmokeGray = Color(0x801E1E2C);
   static const Color whiteColor = Color(0xffffffff);
-  static const Color textFieldColor = Color(0xffF3F5F6);
-  static const Color backgroundColor = Color(0xffF3F5F6);
-  static const Color backgroundColorDark = Color(0xff0a0908);
+  static const Color textFieldColor = Color(0xff000000);
+  static const Color backgroundColor = Color(0xff1F1F1F);
+  static const Color backgroundColorDark = Color(0xff1F1F1F);
 
   static const Color dividerColor = Color(0xfff9f9f9);
   static Color textFieldBorderColor = primaryColor.withValues(alpha: 0.5);
@@ -22,7 +23,7 @@ class AppColors {
   static Color cupertinoBlueColor = const Color(0xff0094ff);
   static Color hintColor = const Color(0xFF808080);
 
-  static const Color textColor = Color(0xff000103);
+  static const Color textColor = Color(0xffffffff);
   static const Color textTitleColor = Color(0xff1A1A1A);
   static const Color textGreyColor = Color(0xff7c7c7c);
   static const Color borderColor = Color(0xffe0e0df);

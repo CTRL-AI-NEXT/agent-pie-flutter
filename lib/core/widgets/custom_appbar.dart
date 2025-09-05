@@ -1,9 +1,11 @@
+import 'package:agent_pie/features/bottom_nav/controller/bottom_nav_controller.dart';
+import 'package:agent_pie/features/bottom_nav/widgets/sop_bottom_sheet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../basic_features.dart';
-import 'network_image.dart';
-import 'text_field/text_field/my_text_field.dart';
+import 'custom_bottom_sheet.dart';
+import 'custom_image.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar.drawerNotificationAppBar({
@@ -329,277 +331,65 @@ class CustomAppBar extends AppBar {
             ),
           ),
         );
+}
 
-  CustomAppBar.searchAppbar({
-    super.key,
-    Function? backPress,
-    Function? onSearch,
-    double? elevation,
-    String? hintText,
-    // required TextEditingController textEditingController,
-    bool centerTitle = true,
-  }) : super(
-          elevation: elevation ?? 1,
-          centerTitle: centerTitle,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: Dimensions.w3),
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: AppColors.blackColor,
+PreferredSizeWidget bottomNavTabAppBar([bool showSop = true]) {
+  final controller = showSop ? Get.find<BottomNavController>() : null;
+  return AppBar(
+    title: CustomSvgAssetImage(
+      image: AppImages.icAppIconFull,
+      height: Dimensions.h32,
+    ),
+    actions: !showSop
+        ? []
+        : [
+            Obx(
+              () => Padding(
+                padding: EdgeInsets.only(right: Dimensions.w10),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.w10,
+                    vertical: Dimensions.h4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(Dimensions.r10),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      CustomBottomSheet.instance.modalBottomSheet(
+                        context: Get.context!,
+                        child: SOPBottomSheetView(
+                          controller: controller!,
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            controller!.selectedSopTitle.value,
+                            style: fontStyleRegular12.copyWith(
+                              fontSize: Dimensions.sp10,
+                              color: AppColors.whiteColor,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(width: Dimensions.w5),
+                        CustomSvgAssetImage(
+                          image: AppImages.icArrowDown,
+                          width: Dimensions.w12,
+                          height: Dimensions.w12,
+                          color: AppColors.whiteColor,
+                        ),
+                      ],
                     ),
                   ),
-                  onTap: () {
-                    if (backPress != null) {
-                      backPress();
-                      return;
-                    }
-                  }),
-              Expanded(
-                child: SizedBox(
-                    height: Dimensions.h40,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: Dimensions.h5),
-                      child: MyTextField(
-                        autoFocus: true,
-                        hintText: hintText,
-                        textStyle: fontStyleSemiBold14_,
-                        hintTextStyle: fontStyleMedium13.copyWith(
-                            color: AppColors.hintColor),
-                        prefixIcon: Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: Dimensions.h6),
-                          child: Image.asset(AppImages.icTextfieldSearchIcon),
-                        ),
-                      ),
-                    )),
-                // child: TextField(
-                //   // controller: textEditingController,
-                //   textInputAction: TextInputAction.search,
-                //   autofocus: true,
-                //   onChanged: (value) {
-                //     if (onSearch != null) {
-                //       onSearch();
-                //     }
-                //   },
-                //   style: CustomTextStyle.instance.semiBold15
-                //       .copyWith(color: ColorConst.whiteColor),
-                //   textAlignVertical: TextAlignVertical.center,
-                //   keyboardType: TextInputType.number,
-                //   // ignore: prefer_const_constructors
-                //   decoration: InputDecoration(
-                //     isDense: true,
-                //     // hintText: AppString.enterFormId,
-                //     hintStyle: CustomTextStyle.instance.regular12
-                //         .copyWith(color: ColorConst.whiteColor),
-                //     border: InputBorder.none,
-                //   ),
-                // ),
+                ),
               ),
-            ],
-          ),
-        );
-
-  CustomAppBar.appIconSearchbar({
-    super.key,
-    Function? onSearchTap,
-    Function? onNotificationTap,
-    Function? onSearchBackPress,
-    String? hintText,
-    double elevation = 1,
-    required ValueNotifier<bool> showSearchBar,
-  }) : super(
-          elevation: elevation,
-          centerTitle: true,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          title: ValueListenableBuilder<bool>(
-              valueListenable: showSearchBar,
-              builder: (context, showSearch, _) {
-                return showSearch
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                              child: Padding(
-                                padding: EdgeInsets.only(left: Dimensions.w3),
-                                child: const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: AppColors.blackColor,
-                                ),
-                              ),
-                              onTap: () {
-                                showSearchBar.value = false;
-                                if (onSearchBackPress != null) {
-                                  onSearchBackPress();
-                                }
-                                return;
-                              }),
-                          Expanded(
-                            child: SizedBox(
-                                height: Dimensions.h40,
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: Dimensions.h5),
-                                  child: MyTextField(
-                                    autoFocus: true,
-                                    hintText: hintText,
-                                    textStyle: fontStyleSemiBold14_,
-                                    hintTextStyle: fontStyleMedium13.copyWith(
-                                        color: AppColors.hintColor),
-                                    prefixIcon: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: Dimensions.h6),
-                                      child: Image.asset(
-                                          AppImages.icTextfieldSearchIcon),
-                                    ),
-                                  ),
-                                )),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: Dimensions.w5),
-                            child: Image.asset(
-                              AppImages.icAppName,
-                              height: Dimensions.h27,
-                            ),
-                          ),
-                          const Spacer(),
-                          GestureDetector(
-                              onTap: () {
-                                if (onNotificationTap != null) {
-                                  onNotificationTap();
-                                }
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.only(right: Dimensions.w15),
-                                child: Center(
-                                    child: Image.asset(
-                                  AppImages.icNotification,
-                                  height: Dimensions.h20,
-                                  width: Dimensions.w20,
-                                )),
-                              )),
-                          Padding(
-                            padding: EdgeInsets.only(right: Dimensions.w15),
-                            child: GestureDetector(
-                              onTap: () {
-                                if (onSearchTap != null) {
-                                  onSearchTap();
-                                }
-                              },
-                              child: Image.asset(
-                                AppImages.icSearch,
-                                height: Dimensions.h20,
-                                width: Dimensions.w20,
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-              }),
-        );
-
-  CustomAppBar.titleSearchAppBar(
-      {super.key,
-      required String title,
-      String? hintText,
-      double elevation = 1,
-      required ValueNotifier<bool> showSearchBar,
-      Function? backPress,
-      Function? onSearchBackPress,
-      Function? onActionTap})
-      : super(
-          elevation: elevation,
-          centerTitle: true,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-          automaticallyImplyLeading: false,
-          title: ValueListenableBuilder<bool>(
-              valueListenable: showSearchBar,
-              builder: (context, showSearch, _) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: Dimensions.w3),
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                        onTap: () {
-                          if (showSearchBar.value == false &&
-                              backPress != null) {
-                            backPress();
-                            return;
-                          } else if (showSearchBar.value) {
-                            showSearchBar.value = false;
-                            if (onSearchBackPress != null) {
-                              onSearchBackPress();
-                            }
-                            return;
-                          }
-                          Navigator.pop(Get.context!);
-                        }),
-                    Expanded(
-                      child: !showSearch
-                          ? Center(
-                              child: Text(title, style: fontStyleSemiBold18))
-                          : SizedBox(
-                              height: Dimensions.h40,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: Dimensions.h5),
-                                child: MyTextField(
-                                  autoFocus: true,
-                                  hintText: hintText,
-                                  textStyle: fontStyleSemiBold14_,
-                                  hintTextStyle: fontStyleMedium13.copyWith(
-                                      color: AppColors.hintColor),
-                                  prefixIcon: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: Dimensions.h6),
-                                    child: Image.asset(
-                                        AppImages.icTextfieldSearchIcon),
-                                  ),
-                                ),
-                              )),
-                    ),
-                  ],
-                );
-              }),
-          actions: [
-            ValueListenableBuilder<bool>(
-                valueListenable: showSearchBar,
-                builder: (context, showSearch, _) {
-                  return showSearch
-                      ? const SizedBox.shrink()
-                      : Padding(
-                          padding: EdgeInsets.only(right: Dimensions.w15),
-                          child: GestureDetector(
-                            onTap: () {
-                              showSearchBar.value = true;
-                              if (onActionTap != null) {
-                                onActionTap();
-                              }
-                            },
-                            child: Image.asset(
-                              AppImages.icSearch,
-                              height: Dimensions.h20,
-                              width: Dimensions.w20,
-                            ),
-                          ),
-                        );
-                })
+            ),
           ],
-        );
+  );
 }

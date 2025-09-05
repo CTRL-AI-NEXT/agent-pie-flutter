@@ -1,3 +1,4 @@
+import 'package:agent_pie/core/environment_setup/environment.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -15,6 +16,7 @@ main() async {
 Future<void> initializingInitials() async {
   await Loader.instance.init();
   await GetStorage.init();
+  await Environment().initConfig(Environment.development);
   // await Firebase.initializeApp();
   // await AppUtils.config();
   // startTrackingCrashes();

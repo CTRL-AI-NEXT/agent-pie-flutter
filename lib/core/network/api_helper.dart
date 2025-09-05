@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as network;
-
+import 'package:http_parser/http_parser.dart';
 import '../environment_setup/environment.dart';
 import '../storage/cache_manager.dart';
 import '../storage/preference_storage.dart';
@@ -31,8 +30,8 @@ class APIHelper {
 
   Future<NetworkResult> callPostApi(String path, dynamic params, bool isLoader,
       {bool noHeaderRequired = false,
-        bool checkAuth = true,
-        Map<String, String>? customHeaderMap}) async {
+      bool checkAuth = true,
+      Map<String, String>? customHeaderMap}) async {
     var callingURL = "${Environment.config.apiHost}/$path";
 
     var parameter = json.encode(params ?? <String, dynamic>{});
@@ -121,10 +120,10 @@ class APIHelper {
       try {
         var resp = await network
             .patch(
-          Uri.parse(callingURL),
-          body: parameter,
-          headers: _headers,
-        )
+              Uri.parse(callingURL),
+              body: parameter,
+              headers: _headers,
+            )
             .timeout(const Duration(minutes: 1));
 
         EasyLoading.dismiss();
@@ -192,10 +191,10 @@ class APIHelper {
       try {
         var resp = await network
             .delete(
-          Uri.parse(callingURL),
-          body: null,
-          headers: _headers,
-        )
+              Uri.parse(callingURL),
+              body: null,
+              headers: _headers,
+            )
             .timeout(const Duration(minutes: 1));
 
         EasyLoading.dismiss();
@@ -361,7 +360,9 @@ class APIHelper {
 
   Future<NetworkResult> callPostMultiPart(
       String path, dynamic params, bool isLoader, String uploadFilePath,
-      {String dataPathName = "data", String imagePathName = "image"}) async {
+      {String dataPathName = "data",
+      String imagePathName = "image",
+      Function(int, int)? onSendProgress}) async {
     var callingURL = "${Environment.config.apiHost}/$path";
     /*  if (_notProperHeader())*/
 
@@ -397,7 +398,8 @@ class APIHelper {
         var responseString = await dio.post(callingURL,
             data: formData,
             options:
-            Options(headers: _headers, contentType: "application/json"));
+                Options(headers: _headers, contentType: "application/json"),
+            onSendProgress: onSendProgress);
 
         if (_isDebug) timber("API Response -> $responseString");
 
@@ -454,7 +456,7 @@ class APIHelper {
           var localPath = uploadFilePaths[i];
           if (!localPath.isNullOrEmpty()) {
             var multipartFile =
-            await MultipartFile.fromFile(uploadFilePaths[i]);
+                await MultipartFile.fromFile(uploadFilePaths[i]);
             multiPartList.add(multipartFile);
           }
         }
@@ -466,7 +468,7 @@ class APIHelper {
         var responseString = await dio.post(callingURL,
             data: formData,
             options:
-            Options(headers: _headers, contentType: "application/json"));
+                Options(headers: _headers, contentType: "application/json"));
 
         if (_isDebug) timber("API Response -> $responseString");
         EasyLoading.dismiss();
@@ -519,7 +521,7 @@ class APIHelper {
         var responseString = await dio.post(callingURL,
             data: formData,
             options:
-            Options(headers: _headers, contentType: "application/json"));
+                Options(headers: _headers, contentType: "application/json"));
 
         if (_isDebug) timber("API Response -> $responseString");
         EasyLoading.dismiss();
@@ -549,10 +551,71 @@ class APIHelper {
     }
   }
 
+  Future<NetworkResult> callPostFile(String path, String filePath, bool isLoader, {Map<String, String>? queryParameters, Function(int, int)? onSendProgress}) async {
+    final uri = Uri.parse("${Environment.config.apiHost}/$path").replace(queryParameters: queryParameters);
+    final callingURL = uri.toString();
+
+    if (_isDebug) {
+      timber("API URL -> $callingURL");
+      timber("API Headers -> $_headers");
+      timber("Selected Image Path -> $filePath");
+    }
+
+    if (await isConnected()) {
+      if (isLoader) {
+        EasyLoading.show();
+      }
+      await AppUtils.validateAuthTokenExpiry();
+      await _createHeadersForMultipart();
+
+      try {
+        FormData formData = FormData.fromMap({
+          "file": await MultipartFile.fromFile(
+            filePath,
+            filename: 'my_document.pdf', // Optional: specify a custom filename
+            contentType: MediaType('application', 'pdf'), // Important: set the correct content type
+          ),
+        });
+
+        var dio = Dio();
+        var responseString = await dio.post(
+          callingURL,
+          data: formData,
+          onSendProgress: onSendProgress,
+        );
+
+        if (_isDebug) timber("API Response -> $responseString");
+
+        EasyLoading.dismiss();
+        if (responseString.statusCode == 200) {
+          return Future.value(
+              NetworkResult.success(json.encode(responseString.data)));
+        } else if (responseString.statusCode == 401 ||
+            responseString.statusCode == 403) {
+          return Future.value(NetworkResult.unAuthorised());
+        } else {
+          return Future.value(
+              NetworkResult.error(json.encode(responseString.data)));
+        }
+      } catch (e, s) {
+        EasyLoading.dismiss();
+        if (_isDebug) {
+          timber(e);
+          timber(s);
+        } else {
+          // FirebaseCrashlytics.instance.recordError(e, s);
+        }
+        return Future.value(NetworkResult.cacheError());
+      }
+    } else {
+      return Future.value(NetworkResult.noInternet());
+    }
+  }
+
   bool notProperHeader() =>
       _headers == null ||
-          _headers!.isEmpty ||
-          _headers?.containsKey(NetworkConstant.authorization) == false;
+      _headers!.isEmpty ||
+      _headers?.containsKey(NetworkConstant.authorization) == false;
 
   Future<void> _createHeaders({Map<String, String>? customHeaderMap}) async {
     String? authToken = await PreferenceStorage.getAuthAccessToken();
