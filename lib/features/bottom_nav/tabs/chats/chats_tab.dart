@@ -69,10 +69,8 @@ class ChatsTab extends StatelessWidget {
                   padding: EdgeInsets.only(
                     left: Dimensions.w20,
                     right: Dimensions.w20,
-                    bottom: controller.isKeyboardVisible.value
-                        ? MediaQuery.of(context).viewInsets.bottom +
-                            Dimensions.h10
-                        : Dimensions.h100,
+                    bottom:
+                        MediaQuery.of(context).padding.bottom + Dimensions.h10,
                   ),
                   child: SendMessageTextField(
                     height: Dimensions.h38,

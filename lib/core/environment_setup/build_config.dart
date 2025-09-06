@@ -3,7 +3,7 @@ import 'environment.dart';
 
 class DevConfig implements BaseConfig {
   @override
-  String get apiHost => "https://627cc716e891.ngrok-free.app";
+  String get apiHost => "http://43.205.242.147";
 
   @override
   String get environment => Environment.development;
