@@ -34,7 +34,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                     color: Colors.black.withAlpha(13),
                     blurRadius: 12,
                     spreadRadius: 2,
-                    offset: Offset(0, 4),
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
@@ -69,7 +69,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                                 // Glowy background (only when selected)
                                 AnimatedScale(
                                   scale: isSelected ? 1.0 : 0.8,
-                                  duration: Duration(milliseconds: 260),
+                                  duration: const Duration(milliseconds: 260),
                                   child: AnimatedOpacity(
                                     opacity: isSelected ? 1.0 : 0.0,
                                     duration: const Duration(milliseconds: 300),
@@ -104,7 +104,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     AnimatedSwitcher(
-                                      duration: Duration(milliseconds: 200),
+                                      duration: const Duration(milliseconds: 200),
                                       transitionBuilder: (child, animation) {
                                         return FadeTransition(
                                           opacity: animation,

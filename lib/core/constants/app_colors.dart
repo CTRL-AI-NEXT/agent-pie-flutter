@@ -7,14 +7,14 @@ class AppColors {
   static const Color primaryColor = Color(0xffFFCC91);
   static const Color primaryDarkColor = Color(0xffd29965);
   static const Color primaryLightColor = Color(0xffffdeb6);
-  static Color snackBarBackgroundColor = Color(0xffffdeb6);
-  static Color snackBarBorderColor = Color(0xff1CBA6F);
+  static Color snackBarBackgroundColor = const Color(0xffffdeb6);
+  static Color snackBarBorderColor = const Color(0xff1CBA6F);
   static const Color greyColor = Color(0xffCBCBCB);
   static const Color blackColor = Color(0xff000000);
   static const Color darkSmokeGray = Color(0x801E1E2C);
   static const Color whiteColor = Color(0xffffffff);
   static const Color textFieldColor = Color(0xff000000);
-  static const Color backgroundColor = Color(0xff1F1F1F);
+  static const Color backgroundColor = Color(0xff151515);
   static const Color backgroundColorDark = Color(0xff1F1F1F);
 
   static const Color dividerColor = Color(0xfff9f9f9);

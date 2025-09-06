@@ -15,7 +15,7 @@ import '../../../core/storage/preference_storage.dart';
 class LoginScreenController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final RxString selectedLoginMode = "user".obs;
-  final emailController = TextEditingController(text: 'john@mail.com');
+  final emailController = TextEditingController(text: 'flash@speed.com');
   final passwordController = TextEditingController(text: '12345678');
   final loginAPIResult = Rx(APIResult<LoginResponseModel?>.loading());
 
