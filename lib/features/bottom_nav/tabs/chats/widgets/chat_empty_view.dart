@@ -12,9 +12,9 @@ class ChatEmptyView extends StatelessWidget {
           children: [
     const Spacer(),
 
-    // Bulb Icon
-    const CustomSvgAssetImage(
-        image: AppImages.icQuizFilled),
+    // // Bulb Icon
+    // const CustomSvgAssetImage(
+    //     image: AppImages.icQuizFilled),
 
     // Title
     Text(

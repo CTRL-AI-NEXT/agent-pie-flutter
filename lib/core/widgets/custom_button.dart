@@ -116,7 +116,7 @@ class MyButton extends StatelessWidget {
         elevation: 0,
         padding: padding,
         fixedSize: Size(miniWidth ?? double.infinity, height ?? Dimensions.h40),
-        backgroundColor: btnBgColor ?? AppColors.primaryColor,
+        backgroundColor: btnBgColor ?? AppColors.whiteColor,
         disabledBackgroundColor: AppColors.greyColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(cornerRadius ?? Dimensions.r25),
@@ -128,7 +128,7 @@ class MyButton extends StatelessWidget {
             Text(title!,
                 textAlign: TextAlign.center,
                 style: textStyle ??
-                    fontStyleRegular14.copyWith(color: Colors.white)),
+                    fontStyleRegular14.copyWith(color: Colors.black)),
       ),
     );
   }

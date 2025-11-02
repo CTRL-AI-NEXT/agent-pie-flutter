@@ -7,6 +7,7 @@ import 'package:agent_pie/core/network/network_constant.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/enum.dart';
+import '../../../controller/bottom_nav_controller.dart';
 
 class QuizController extends GetxController {
   final pageController = PageController();
@@ -90,9 +91,10 @@ class QuizController extends GetxController {
     // quiz.value = quizFromJson(mockResponse);
 
     resultQuizResponse.value = APIResult<Quiz>.loading();
+    final bottomNavController = Get.find<BottomNavController>();
 
     var networkResult = await APIHelper.instance.callGetApi(
-      '${NetworkConstant.quizzes}/1',
+      '${NetworkConstant.quizzes}/${bottomNavController.selectedSopTitle.value.id}',
       {},
       false,
     );

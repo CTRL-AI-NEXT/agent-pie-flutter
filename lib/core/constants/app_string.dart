@@ -32,8 +32,12 @@ class AppString {
 
   // Upload Screen
   static const String uploadSop = "Upload your SOP";
-  static const String uploadSopText = "Upload your SOP in PDF file format";
-  static const String tapToUploadSOP = "Tap to upload SOP";
+  static const String uploadSopText = "Upload your SOP as a PDF, and we’ll transform it into interactive training with auto-generated quizzes and a smart chatbot to guide your team.";
+  static const String tapToUploadSOP = "Tap anywhere to select PDF";
+  static const String uploadingPDF = "Uploading your PDF… AI is getting it ready for you!";
+  static const String generatingQuiz = "Cooking up some quiz questions from your SOP 📖✨";
+  static const String generatingTraining = "Turning your SOP into easy training steps 🚀";
+
 
   // PERMISSION HANDLE DIALOG
   static const String permissionCancel = "Cancel";

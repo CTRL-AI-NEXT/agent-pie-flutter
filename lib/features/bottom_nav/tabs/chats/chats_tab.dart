@@ -7,7 +7,6 @@ import 'package:agent_pie/features/bottom_nav/tabs/chats/widgets/chat_bubble.dar
 import 'package:agent_pie/features/bottom_nav/tabs/chats/widgets/chat_empty_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'controller/chats_controller.dart';
 
 class ChatsTab extends StatelessWidget {

@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                         width: Get.width * 0.7,
                         height: Dimensions.h200,
-                        child: Lottie.asset('assets/loaders/loader.json')),
+                        child: Lottie.asset(AppImages.loaderLottie)),
                     SizedBox(
                       height: Dimensions.h60,
                     ),
