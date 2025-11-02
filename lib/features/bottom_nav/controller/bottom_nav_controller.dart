@@ -1,5 +1,7 @@
 import 'package:agent_pie/core/basic_features.dart';
+import 'package:agent_pie/core/model/response_model/login_response_model.dart';
 import 'package:agent_pie/core/storage/preference_storage.dart';
+import 'package:agent_pie/core/utils/logger_util.dart';
 import 'package:agent_pie/features/auth/login_screen.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/actions/actions_tab.dart';
 import 'package:agent_pie/features/bottom_nav/tabs/chats/chats_tab.dart';
@@ -11,6 +13,17 @@ import '../widgets/floating_nav_bar.dart';
 class BottomNavController extends GetxController {
   final selectedIndex = 0.obs;
 
+
+  @override
+  void onInit() {
+    final loginResponseModel = PreferenceStorage.getLoginResponseModel();
+    logger.i(loginResponseModel?.toJson());
+    sopTitles.value = loginResponseModel?.sops ?? [];
+    if (sopTitles.isNotEmpty){
+      selectedSopTitle.value = sopTitles[0];
+    }
+    super.onInit();
+  }
   final screens = [
     const ChatsTab(),
     const QuizTab(),
@@ -48,13 +61,9 @@ class BottomNavController extends GetxController {
     ),
   ];
 
-  final selectedSopTitle = 'SOP 001 v1'.obs;
-  final sopTitles = <String>[
-    'SOP 001 v1',
-    'SOP 002 v1',
-    'SOP 003 v1',
-    'SOP 004 v1',
-    'SOP 005 v1',
+  Rx<Sop> selectedSopTitle = Sop().obs;
+  RxList<Sop> sopTitles = <Sop>[
+
   ].obs;
 
   void onDestinationSelected(int index) {

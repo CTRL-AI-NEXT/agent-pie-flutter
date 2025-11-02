@@ -8,6 +8,7 @@ class CustomDialogs {
   static void showCustomDialog({
     final String? title,
     final String? contentText,
+    final Color? backgroundColor,
     final bool barrierDismiss = true,
     final bool mergeDefaultWithContent = false,
     final String? firstButtonText,
@@ -53,7 +54,7 @@ class CustomDialogs {
                     width: Get.width * 0.82,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.r15),
-                      color: Get.theme.colorScheme.dialogColor,
+                      color:  backgroundColor ?? Get.theme.colorScheme.dialogColor,
                     ),
                     padding: EdgeInsets.all(Dimensions.commonPaddingForScreen)
                         .copyWith(top: Dimensions.h30, bottom: Dimensions.h20),

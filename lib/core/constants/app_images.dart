@@ -60,6 +60,8 @@ class AppImages {
   static const String icUpload = "assets/images/ic_upload.png";
   static const String icUploadFilled = "assets/images/ic_upload_filled.png";
   static const String fileUploadLottie = "assets/loaders/file_upload.json";
+  static const String loaderLottie = "assets/loaders/loader.json";
+  static const String successCheckLottie = "assets/loaders/success_check.json";
 
 
   // Chat

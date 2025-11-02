@@ -60,7 +60,7 @@ class APIHelper {
       try {
         var resp = await network
             .post(Uri.parse(callingURL), body: parameter, headers: _headers)
-            .timeout(const Duration(minutes: 1));
+            .timeout(const Duration(minutes: 2));
 
         EasyLoading.dismiss();
 

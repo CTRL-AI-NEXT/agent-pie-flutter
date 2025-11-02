@@ -20,25 +20,11 @@ enum NetworkResultType {
   notFound
 }
 
-enum UserContentType {
-  story,
-  general,
-}
 
-enum MediaType { image, video }
-
-enum FilterType {
-  date,
-  time,
-  city,
-  reciter,
-  typeOfEvent,
-  event,
-  age,
-  organization
-}
-
-enum ImageType {
-  local,
-  network,
+enum UploadStep {
+  idle,
+  uploadingPDF,
+  generatingQuiz,
+  generatingTraining,
+  completed,
 }

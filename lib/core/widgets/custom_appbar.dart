@@ -369,7 +369,7 @@ PreferredSizeWidget bottomNavTabAppBar([bool showSop = true]) {
                       children: [
                         Flexible(
                           child: Text(
-                            controller!.selectedSopTitle.value,
+                            controller!.selectedSopTitle.value.filename ?? "",
                             style: fontStyleRegular12.copyWith(
                               fontSize: Dimensions.sp10,
                               color: AppColors.whiteColor,

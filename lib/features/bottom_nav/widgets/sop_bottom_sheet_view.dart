@@ -13,13 +13,13 @@ class SOPBottomSheetView extends StatelessWidget {
       shrinkWrap: true,
       itemCount: controller.sopTitles.length,
       itemBuilder: (context, index) {
-        final sopTitle = controller.sopTitles[index];
+        final sop = controller.sopTitles[index];
         return CheckboxListTile(
-          title: Text(sopTitle),
-          value: controller.selectedSopTitle.value == sopTitle,
+          title: Text(sop.filename ?? ""),
+          value: controller.selectedSopTitle.value == sop,
           onChanged: (value) {
             if (value == true) {
-              controller.selectedSopTitle.value = sopTitle;
+              controller.selectedSopTitle.value = sop;
               Navigator.pop(context);
             }
           },
